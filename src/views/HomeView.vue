@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<main class="min-h-screen overflow-hidden bg-neutral-900 font-poppins text-white">
+	<main class="min-h-screen bg-neutral-900 font-poppins text-white">
 		<div class="flex min-h-screen flex-col items-center justify-center gap-y-8">
 			<div class="h-48 w-48">
 				<img class="rounded-full" src="../assets/images/logo.jpg" alt="George Avatar" />
