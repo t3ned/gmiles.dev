@@ -3,7 +3,7 @@
 <template>
 	<main class="min-h-screen bg-neutral-900 font-poppins text-white">
 		<div class="flex min-h-screen flex-col items-center justify-center gap-y-8">
-			<div class="h-36 w-36 sm:h-48 sm:w-48">
+			<div class="h-36 w-36 rounded-full bg-neutral-800 sm:h-48 sm:w-48">
 				<img class="rounded-full" src="../assets/images/logo.jpg" alt="George Avatar" />
 			</div>
 
