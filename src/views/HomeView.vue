@@ -20,7 +20,7 @@
 			<div
 				class="mt-6 cursor-pointer rounded-xl bg-orange-600 p-3 text-sm hover:bg-orange-500 md:text-base"
 			>
-				<span><a href="mailto:me@t3ned.dev">Connect with me</a></span>
+				<span><a href="mailto:hi@gmiles.dev">Connect with me</a></span>
 			</div>
 		</div>
 	</main>
