@@ -6,7 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**/*.ts", "**/*.js", "**/*.vue", "**/*.json"]
+		"includes": ["**/*.ts", "**/*.js", "**/*.vue", "**/*.json", "**/*.jsonc"]
 	},
 	"assist": {
 		"actions": {
