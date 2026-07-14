@@ -1,10 +1,9 @@
 # gmiles.dev
 
-Personal portfolio — Vue 3, Tailwind CSS v4, Vite, TypeScript. Runs on [Bun](https://bun.sh).
+Personal portfolio site built with Vue 3, Tailwind CSS v4, Vite, and TypeScript on [Bun](https://bun.sh).
 
 ```sh
 bun install
-bun run dev     # local dev server
-bun run build   # type-check + production build
-bun run preview # preview the production build
+bun run dev
+bun run build
 ```
