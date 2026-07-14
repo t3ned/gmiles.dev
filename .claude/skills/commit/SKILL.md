@@ -100,13 +100,13 @@ Each commit should contain one logical change. Create separate commits for:
 1. If not already in the repo root, `cd` into it first (do NOT use `git -C`, it bypasses allowed-tools)
 2. Run `git status` to check current state
 3. If files are already staged:
-	- Run `git diff --staged` to review staged changes
-	- Commit directly
+    - Run `git diff --staged` to review staged changes
+    - Commit directly
 4. If nothing staged:
-	- Run `git diff` to see unstaged changes
-	- Help decide what to stage together (see Granular Commits above)
-	- Stage with `git add <file>` or `git add -p <file>` for partial staging
-	- Commit
+    - Run `git diff` to see unstaged changes
+    - Help decide what to stage together (see Granular Commits above)
+    - Stage with `git add <file>` or `git add -p <file>` for partial staging
+    - Commit
 
 ### Commit Syntax
 

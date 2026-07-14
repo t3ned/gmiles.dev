@@ -53,10 +53,10 @@ Prefer popular, well-maintained packages over hand-rolling functionality for any
 
 ## Typography
 
-| Font                | Class          | Usage                                                    |
-| ------------------- | -------------- | -------------------------------------------------------- |
-| Bricolage Grotesque | `font-display` | Headings, titles (`font-semibold` to `font-extrabold`)   |
-| Instrument Sans     | `font-sans`    | Body, UI (default, `font-normal` to `font-medium`)       |
+| Font                | Class          | Usage                                                     |
+| ------------------- | -------------- | --------------------------------------------------------- |
+| Bricolage Grotesque | `font-display` | Headings, titles (`font-semibold` to `font-extrabold`)    |
+| Instrument Sans     | `font-sans`    | Body, UI (default, `font-normal` to `font-medium`)        |
 | JetBrains Mono      | `font-mono`    | Labels, terminal, meta (`font-normal` to `font-semibold`) |
 
 ## Theming
