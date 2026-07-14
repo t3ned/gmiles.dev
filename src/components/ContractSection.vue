@@ -22,7 +22,12 @@ import SectionLabel from "./SectionLabel.vue";
 					</li>
 					<li class="flex gap-3">
 						<span class="text-accent font-mono" aria-hidden="true">02</span>
-						{{ contracting.consultation }}
+						<span>
+							{{ contracting.consultation }}
+							<a href="/refunds" class="text-accent underline underline-offset-4 transition-opacity hover:opacity-80">
+								Refund policy
+							</a>
+						</span>
 					</li>
 					<li class="flex gap-3">
 						<span class="text-accent font-mono" aria-hidden="true">03</span>

@@ -3,9 +3,17 @@ import ContractSection from "./components/ContractSection.vue";
 import EducationSection from "./components/EducationSection.vue";
 import ExperienceSection from "./components/ExperienceSection.vue";
 import HeroSection from "./components/HeroSection.vue";
+import LegalView from "./components/LegalView.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import StackSection from "./components/StackSection.vue";
 import ThemeToggle from "./components/ThemeToggle.vue";
+import { legalDocs } from "./legal";
+
+// Path-based rendering without a router. The worker serves index.html for
+// every path (single-page-application fallback), so /privacy, /terms and
+// /refunds resolve here
+const path = window.location.pathname.replace(/\/+$/, "");
+const legalDoc = legalDocs.find((doc) => `/${doc.slug}` === path);
 </script>
 
 <template>
@@ -19,8 +27,8 @@ import ThemeToggle from "./components/ThemeToggle.vue";
 
 		<header class="border-line/60 bg-bg/80 sticky top-0 z-10 border-b backdrop-blur-md">
 			<div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-				<a href="#" class="font-mono text-sm font-semibold"> <span class="text-accent">~/</span>gmiles.dev </a>
-				<nav class="text-soft hidden items-center gap-6 font-mono text-xs md:flex">
+				<a href="/" class="font-mono text-sm font-semibold"> <span class="text-accent">~/</span>gmiles.dev </a>
+				<nav v-if="!legalDoc" class="text-soft hidden items-center gap-6 font-mono text-xs md:flex">
 					<a href="#stack" class="hover:text-accent transition-colors">stack</a>
 					<a href="#experience" class="hover:text-accent transition-colors">experience</a>
 					<a href="#education" class="hover:text-accent transition-colors">education</a>
@@ -51,7 +59,10 @@ import ThemeToggle from "./components/ThemeToggle.vue";
 			</div>
 		</header>
 
-		<main class="mx-auto max-w-5xl space-y-32 px-6 pb-8">
+		<main v-if="legalDoc" class="mx-auto max-w-5xl px-6 pb-8">
+			<LegalView :doc="legalDoc" />
+		</main>
+		<main v-else class="mx-auto max-w-5xl space-y-32 px-6 pb-8">
 			<HeroSection />
 			<StackSection />
 			<ExperienceSection />
