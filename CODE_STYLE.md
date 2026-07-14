@@ -2,7 +2,7 @@
 
 ## Formatting
 
-Prettier: tabs (width 4), double quotes, semicolons, trailing commas, 120 char width. Tailwind classes sorted via `prettier-plugin-tailwindcss`. No unused vars/imports.
+Biome: tabs (width 4), double quotes, semicolons, trailing commas, 120 char width. No `any`, no unused vars/imports, no non-null assertions. Vue SFCs relax the unused/undeclared rules. `bun run lint` to check, `bun run format` to fix.
 
 ### Blank Lines
 

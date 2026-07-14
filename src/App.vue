@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import ThemeToggle from "./components/ThemeToggle.vue";
-import HeroSection from "./components/HeroSection.vue";
-import StackSection from "./components/StackSection.vue";
-import ExperienceSection from "./components/ExperienceSection.vue";
-import EducationSection from "./components/EducationSection.vue";
 import ContractSection from "./components/ContractSection.vue";
+import EducationSection from "./components/EducationSection.vue";
+import ExperienceSection from "./components/ExperienceSection.vue";
+import HeroSection from "./components/HeroSection.vue";
 import SiteFooter from "./components/SiteFooter.vue";
+import StackSection from "./components/StackSection.vue";
+import ThemeToggle from "./components/ThemeToggle.vue";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { profile } from "@/data";
 import headshot from "@/assets/headshot.jpg";
+import { profile } from "@/data";
 </script>
 
 <template>
