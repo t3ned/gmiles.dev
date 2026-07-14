@@ -29,6 +29,11 @@ import { profile } from "@/data";
 				class="text-soft mt-10 flex flex-col gap-3 font-mono text-xs sm:flex-row sm:items-center sm:justify-between"
 			>
 				<p>© {{ new Date().getFullYear() }} George Miles</p>
+				<nav class="flex items-center gap-4">
+					<a href="/privacy" class="hover:text-accent transition-colors">privacy</a>
+					<a href="/terms" class="hover:text-accent transition-colors">terms</a>
+					<a href="/refunds" class="hover:text-accent transition-colors">refunds</a>
+				</nav>
 				<a :href="profile.linkedin" target="_blank" rel="noopener" class="hover:text-accent transition-colors">
 					linkedin.com/in/gtmmiles
 				</a>
