@@ -1,0 +1,47 @@
+<script setup lang="ts">
+import { roles } from "@/data";
+import SectionLabel from "./SectionLabel.vue";
+</script>
+
+<template>
+	<section id="experience" class="scroll-mt-24">
+		<SectionLabel title="Experience" />
+
+		<ol class="border-line relative ml-2 space-y-12 border-l pl-8 sm:ml-4">
+			<li v-for="(role, i) in roles" :key="role.company + role.period" v-reveal="i * 60" class="relative">
+				<!-- timeline marker -->
+				<span
+					class="border-accent absolute top-1.5 -left-[38.5px] size-2.5 rounded-full border-2"
+					:class="i === 0 ? 'bg-accent' : 'bg-bg'"
+					aria-hidden="true"
+				/>
+
+				<p class="text-soft font-mono text-xs">{{ role.period }} · {{ role.location }}</p>
+				<h3 class="font-display mt-1.5 text-2xl font-bold">{{ role.company }}</h3>
+				<p class="text-accent mt-0.5 font-medium">{{ role.title }}</p>
+				<p class="text-soft mt-3 max-w-2xl leading-relaxed">{{ role.summary }}</p>
+				<ul class="mt-4 space-y-2">
+					<li
+						v-for="highlight in role.highlights"
+						:key="highlight"
+						class="text-soft flex max-w-2xl gap-3 text-sm leading-relaxed"
+					>
+						<svg
+							class="text-accent mt-1 size-3.5 shrink-0"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
+						>
+							<path d="m9 18 6-6-6-6" />
+						</svg>
+						{{ highlight }}
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</section>
+</template>
