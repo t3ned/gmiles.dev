@@ -139,7 +139,12 @@ export const schools: School[] = [
 		detail: "Business strategy, finance, and team management, studied alongside full-time engineering work.",
 		headline: "First",
 		headlineNote: "honours",
-		awards: ["Greenshoots Seed Finance Award 2026"],
+		awards: [
+			"Best Overall Performance Business",
+			"Best Business and Management Student (Entrepreneurship)",
+			"Dean's Excellence Award Entrepreneurship",
+			"Greenshoots Seed Finance Award 2026",
+		],
 	},
 	{
 		name: "Bexhill College",
