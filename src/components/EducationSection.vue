@@ -28,11 +28,14 @@ import SectionLabel from "./SectionLabel.vue";
 
 				<p v-if="school.detail" class="text-soft mt-4 text-sm leading-relaxed">{{ school.detail }}</p>
 
-				<ul v-if="school.subjects?.length" class="border-line mt-4 divide-y divide-(--c-line) border-t">
+				<ul
+					v-if="school.subjects?.length"
+					class="border-line mt-4 flex flex-1 flex-col divide-y divide-(--c-line) border-t"
+				>
 					<li
 						v-for="{ subject, grade } in school.subjects"
 						:key="subject"
-						class="flex items-center justify-between py-2.5 text-sm"
+						class="flex flex-1 items-center justify-between py-2.5 text-sm"
 					>
 						<span class="text-soft">{{ subject }}</span>
 						<span class="font-display text-accent text-base font-bold">{{ grade }}</span>
