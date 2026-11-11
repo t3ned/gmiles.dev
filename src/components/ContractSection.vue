@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { contracting } from "@/data";
+import { contracting, profile } from "@/data";
 import SectionLabel from "./SectionLabel.vue";
 </script>
 
@@ -11,25 +11,13 @@ import SectionLabel from "./SectionLabel.vue";
 			<div class="p-6 sm:p-8">
 				<p class="max-w-lg text-lg leading-relaxed">{{ contracting.pitch }}</p>
 
-				<div class="text-soft mt-6 max-w-lg space-y-3 text-sm leading-relaxed">
-					<p>
-						Engagements start from
-						<span class="text-ink font-medium">{{ contracting.minimum }}</span>.
-					</p>
-					<p>
-						{{ contracting.consultation }}
-						<a href="/refunds" class="text-accent underline underline-offset-4">Refund policy</a>
-					</p>
-					<p>{{ contracting.capacity }}</p>
-				</div>
+				<p class="text-soft mt-6 max-w-lg text-sm leading-relaxed">{{ contracting.consultation }}</p>
 
 				<a
-					:href="contracting.bookingUrl"
-					target="_blank"
-					rel="noopener"
-					class="bg-accent mt-8 inline-flex h-11 items-center rounded-md px-5 text-sm text-bg font-semibold hover:opacity-90"
+					:href="`mailto:${profile.email}?subject=${encodeURIComponent(contracting.enquirySubject)}`"
+					class="bg-accent text-bg mt-8 inline-flex h-11 items-center rounded-md px-5 text-sm font-semibold hover:opacity-90"
 				>
-					Book a consultation
+					Email me to book
 				</a>
 			</div>
 

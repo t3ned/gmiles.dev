@@ -115,12 +115,10 @@ export const roles: Role[] = [
 ];
 
 export const contracting = {
-	bookingUrl: "https://book.morgen.so/george",
+	enquirySubject: "Consultation booking",
 	pitch: "I take on a small number of contract and commission projects: MVPs, system rewrites, performance work, and full-stack builds.",
-	minimum: "£750",
-	capacity:
-		"I keep client slots deliberately limited. Live availability is on the booking calendar: if you can see a slot, I can take you on.",
-	consultation: "Consultations are £150, credited in full toward your project. If we don't go ahead, it's refunded.",
+	consultation:
+		"Consultations are free and take 30 minutes. Email me a few lines on what you need and we'll pick a time.",
 	terms: [
 		{ term: "Subject to contract", detail: "every engagement starts with a signed agreement" },
 		{ term: "Fully scoped", detail: "we agree exactly what's being built before work starts" },
