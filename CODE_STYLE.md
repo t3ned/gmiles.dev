@@ -2,7 +2,7 @@
 
 ## Formatting
 
-Biome: tabs (width 4), double quotes, semicolons, trailing commas, 120 char width. No `any`, no unused vars/imports, no non-null assertions. Vue SFCs relax the unused/undeclared rules. `bun run lint` to check, `bun run format` to fix.
+Oxfmt: tabs (width 4), double quotes, semicolons, trailing commas, 120 char width. Oxlint: no `any`, no unused vars, no non-null assertions. `bun run lint` to lint, `bun run format` to fix formatting.
 
 ### Blank Lines
 
@@ -10,16 +10,16 @@ Blank line after multi-line block (3+ lines) when followed by another statement.
 
 ```typescript
 // Good
-watchEffect(() => {
-	localStorage.setItem("theme", theme.value);
-	document.documentElement.classList.toggle("dark", isDark.value);
+button?.addEventListener("click", () => {
+	const dark = !root.classList.contains("dark");
+	apply(dark);
 });
 
-export function useTheme() { ... }
+apply(root.classList.contains("dark"));
 
 // Good - single lines together
+const root = document.documentElement;
 const media = window.matchMedia("(prefers-color-scheme: dark)");
-const systemDark = ref(media.matches);
 ```
 
 ## Comments
@@ -43,11 +43,13 @@ const toggle = () => { ... };
 
 Prefer popular, well-maintained packages over hand-rolling functionality for anything with a standard. Avoid general-purpose utility packages like `lodash` to keep bundle size in check; import only focused, single-purpose packages.
 
-## Vue / Frontend
+## Astro / Frontend
 
-**Component Organization:** One component per section in `src/components/`. Small, one-time-use markup can stay inline in its parent. Larger or reusable pieces get their own file.
+**Component Organization:** Pages in `src/pages/`, the shared shell in `src/layouts/Layout.astro`, one component per section in `src/components/`. Small, one-time-use markup can stay inline in its parent. Larger or reusable pieces get their own file.
 
 **Content vs markup:** All copy, links, and profile data live in `src/data.ts`. Components render data, they do not embed prose.
+
+**JavaScript:** The site ships static HTML. Keep client scripts to small inline `<script>` blocks in the component that needs them. No UI framework islands unless something genuinely needs one.
 
 **Icons:** Inline SVG only. No emojis or unicode symbols as icons. Terminal ASCII art (tree glyphs, interpuncts) is content, not iconography.
 
@@ -67,4 +69,4 @@ Semantic tokens: `bg`, `surface`, `ink` (text), `soft` (muted text), `line` (bor
 
 ## Motion
 
-Load-in stagger via `.rise` (hero only), scroll reveal via the `v-reveal` directive. All animation respects `prefers-reduced-motion`.
+Load-in stagger via `.rise` (hero only), scroll reveal via the `.reveal` class with an optional inline `transition-delay` for stagger. All animation respects `prefers-reduced-motion`.
