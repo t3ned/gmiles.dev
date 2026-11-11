@@ -129,11 +129,11 @@ export const roles: Role[] = [
 
 export const contracting = {
 	bookingUrl: "https://cal.com/gmiles",
-	pitch: "I take on a small number of contract and commission projects. I can build something new from scratch or build on what you already have: MVPs, new features, system rewrites, performance work, and full-stack builds.",
+	pitch: "I take on a small number of contract projects: new builds from scratch, or new features, rewrites and performance work on what you already have.",
 	points: [
 		"Consultations are free. Book a 30 minute call and we'll talk through what you need.",
 		"Quoted fixed or hourly, whichever suits the work.",
-		"I keep client slots deliberately limited. Live availability is on the booking calendar: if you can see a slot, I can take you on.",
+		"I only work with a few clients at a time, so I can give each project proper focus.",
 	],
 	terms: [
 		{ term: "Subject to contract", detail: "every engagement starts with a signed agreement" },
