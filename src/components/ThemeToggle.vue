@@ -12,7 +12,7 @@ const label = computed(() => (isDark.value ? "Switch to light theme" : "Switch t
 		type="button"
 		:title="label"
 		:aria-label="label"
-		class="border-line bg-surface text-soft hover:border-accent hover:text-accent flex size-9 items-center justify-center rounded-lg border transition-colors"
+		class="border-line bg-surface text-soft hover:border-soft hover:text-ink flex size-9 items-center justify-center rounded-md border"
 		@click="toggle"
 	>
 		<!-- sun (shown in dark mode: click for light) -->

@@ -39,26 +39,26 @@ export const profile = {
 export const stack: StackLayer[] = [
 	{
 		id: "backend",
-		name: "backend",
-		note: "where I started",
+		name: "Backend",
+		note: "Where I started",
 		items: ["Rust", "Node.js & Bun", "REST, GraphQL & gRPC", "Kafka", "OAuth 2.0 & MFA", "Microservices"],
 	},
 	{
 		id: "data",
-		name: "data",
-		note: "what pulled me deeper",
+		name: "Data",
+		note: "What pulled me deeper",
 		items: ["PostgreSQL", "ClickHouse", "Redis", "MongoDB", "MySQL", "SQLite"],
 	},
 	{
 		id: "infrastructure",
-		name: "infrastructure",
-		note: "then I owned the platform",
+		name: "Infrastructure",
+		note: "Then I owned the platform",
 		items: ["Kubernetes", "Docker", "GitOps", "CI/CD", "AWS", "Bare metal", "Terraform"],
 	},
 	{
 		id: "frontend",
-		name: "frontend",
-		note: "the final piece",
+		name: "Frontend",
+		note: "The final piece",
 		items: ["Vue & Nuxt", "React & Next.js", "TypeScript", "Tailwind CSS", "Electron"],
 	},
 ];

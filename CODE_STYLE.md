@@ -53,18 +53,14 @@ Prefer popular, well-maintained packages over hand-rolling functionality for any
 
 ## Typography
 
-| Font                | Class          | Usage                                                     |
-| ------------------- | -------------- | --------------------------------------------------------- |
-| Bricolage Grotesque | `font-display` | Headings, titles (`font-semibold` to `font-extrabold`)    |
-| Instrument Sans     | `font-sans`    | Body, UI (default, `font-normal` to `font-medium`)        |
-| JetBrains Mono      | `font-mono`    | Labels, terminal, meta (`font-normal` to `font-semibold`) |
+IBM Plex Sans (`font-sans`) for everything: headings `font-semibold`, body `font-normal` to `font-medium`, sentence case throughout. IBM Plex Mono (`font-mono`) only for technology names in the stack list. Numbers render tabular.
 
 ## Theming
 
-Hex colors in CSS vars, defined in `src/style.css` (`:root` for light, `.dark` overrides) and exposed to Tailwind via `@theme inline`. Light/dark via `.dark` class on `<html>`, applied pre-paint by the inline script in `index.html`. Rust-orange accent (`--c-accent`), warm paper light theme, deep ink dark theme. The stack terminal stays dark in both themes.
+Hex colors in CSS vars, defined in `src/style.css` (`:root` for light, `.dark` overrides) and exposed to Tailwind via `@theme inline`. Light/dark via `.dark` class on `<html>`, applied pre-paint by the inline script in `index.html`. Neutral light and dark themes with a rust accent (`--c-accent`) kept for links and the primary button.
 
-Semantic tokens: `bg`, `surface`, `ink` (text), `soft` (muted text), `line` (borders), `accent`, `accent-soft`. Use these, never raw hex in components.
+Semantic tokens: `bg`, `surface`, `ink` (text), `soft` (muted text), `line` (borders), `accent`. Use these, never raw hex in components.
 
 ## Motion
 
-Load-in stagger via `.rise` (hero only), scroll reveal via the `v-reveal` directive. All animation respects `prefers-reduced-motion`.
+None beyond the browser's smooth scrolling. Hover states change color only.
