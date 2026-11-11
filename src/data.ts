@@ -30,7 +30,7 @@ export const profile = {
 	role: "Senior Backend Engineer",
 	tagline: "Backend at the core. Full stack from the ground up.",
 	summary:
-		"I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
+		"I own and run Stats.cc, and I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
 	location: "England · remote, worldwide",
 	email: "hi@gmiles.dev",
 	linkedin: "https://linkedin.com/in/gtmmiles",
@@ -67,11 +67,23 @@ export const stack: StackLayer[] = [
 export const roles: Role[] = [
 	{
 		company: "Stats.cc",
-		title: "Senior Backend Engineer & DevOps",
+		title: "Owner",
+		period: "Oct 2026 - Present",
+		location: "Remote, UK",
+		summary:
+			"Took over the business I helped build. Now leading everything from infrastructure, backend and frontend to product direction and business strategy, on a mission to give 250 million gamers the tools to track, analyse and improve their performance.",
+		highlights: [
+			"Own product direction and business strategy end to end",
+			"Still hands-on across infrastructure, backend and frontend",
+		],
+	},
+	{
+		company: "Stats.cc",
+		title: "Founding Engineer",
 		period: "Feb 2024 - Present",
 		location: "Remote, UK",
 		summary:
-			"Early member leading backend architecture and infrastructure for a gaming statistics platform on a mission to help 500 million players improve.",
+			"Joined the founders after building a similar side project around the same time. Led backend architecture and built and ran all of the infrastructure, then moved into full stack to ship frontend features too.",
 		highlights: [
 			"25+ Rust microservices on production Kubernetes",
 			"Full system rewrite in Rust: 10x faster, ~20% cheaper",
@@ -79,12 +91,12 @@ export const roles: Role[] = [
 		],
 	},
 	{
-		company: "LinkMe",
-		title: "Senior Backend Engineer",
+		company: "Linkme",
+		title: "Backend Engineer",
 		period: "Apr - Jul 2025",
 		location: "Remote, UK",
 		summary:
-			"Four-month contract designing and shipping a TypeScript authentication service, delivered while continuing to lead engineering at Stats.cc.",
+			"Four-month contract architecting a TypeScript authentication service and integrating it with legacy systems, delivered while continuing to lead engineering at Stats.cc.",
 		highlights: [
 			"OAuth 2.0 + MFA, expanding login options from 1 to 4",
 			"Replaced a brittle untyped flow with type-safe auth",
@@ -102,12 +114,12 @@ export const roles: Role[] = [
 		],
 	},
 	{
-		company: "Tabwire",
-		title: "Operations Engineer",
+		company: "Enthusiast Gaming",
+		title: "Community Management · Tabwire",
 		period: "Nov 2020 - Mar 2022",
 		location: "Remote, UK",
 		summary:
-			"First production engineering: built internal moderation tooling for team workflows across social platforms and community forums.",
+			"Joined Tabwire before the acquisition, providing responsive support across social accounts and forums, and built tooling for the team's moderation processes.",
 		highlights: [
 			"User pain points from support later shaped backend priorities",
 			"Joined pre-acquisition; Tabwire sold to Enthusiast for $11M",
@@ -116,18 +128,19 @@ export const roles: Role[] = [
 ];
 
 export const contracting = {
-	bookingUrl: "https://book.morgen.so/george",
-	pitch: "I take on a small number of contract and commission projects: MVPs, system rewrites, performance work, and full-stack builds.",
-	minimum: "£750",
-	capacity:
+	bookingUrl: "https://cal.com/gmiles",
+	pitch: "I take on a small number of contract and commission projects. I can build something new from scratch or build on what you already have: MVPs, new features, system rewrites, performance work, and full-stack builds.",
+	points: [
+		"Consultations are free. Book a 30 minute call and we'll talk through what you need.",
+		"Quoted fixed or hourly, whichever suits the work.",
 		"I keep client slots deliberately limited. Live availability is on the booking calendar: if you can see a slot, I can take you on.",
-	consultation: "Consultations are £150, credited in full toward your project. If we don't go ahead, it's refunded.",
+	],
 	terms: [
 		{ term: "Subject to contract", detail: "every engagement starts with a signed agreement" },
 		{ term: "Fully scoped", detail: "we agree exactly what's being built before work starts" },
-		{ term: "Fixed quote", detail: "one price for the agreed scope, no surprises" },
-		{ term: "50% deposit", detail: "half up front to book the work in" },
-		{ term: "Balance on delivery", detail: "the rest is due when the work is signed off" },
+		{ term: "Fixed or hourly", detail: "one price for a defined scope, or an hourly rate for ongoing work" },
+		{ term: "50% deposit", detail: "half of the quote or estimate up front to book the work in" },
+		{ term: "Balance on delivery", detail: "the rest is invoiced when the work is signed off" },
 	],
 };
 
@@ -141,9 +154,9 @@ export const schools: School[] = [
 		headlineNote: "honours",
 		awards: [
 			"Best Overall Performance Business",
-			"Best Business and Management Student (Entrepreneurship)",
+			"Best Business and Management Student (Entrepreneurship and Innovation)",
 			"Dean's Excellence Award Entrepreneurship",
-			"Greenshoots Seed Finance Award 2026",
+			"Henley Greenshoots Seed Finance Award 2026",
 		],
 	},
 	{

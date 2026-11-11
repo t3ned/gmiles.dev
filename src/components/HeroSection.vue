@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import headshot from "@/assets/headshot.jpg";
-import { profile } from "@/data";
+import { contracting, profile } from "@/data";
 </script>
 
 <template>
@@ -39,22 +39,25 @@ import { profile } from "@/data";
 				</p>
 				<div class="rise mt-5 flex flex-wrap items-center gap-3 font-mono text-sm" style="--rise: 4">
 					<a
-						:href="`mailto:${profile.email}`"
-						class="border-line bg-surface text-ink hover:border-accent hover:text-accent flex h-10 items-center gap-2 rounded-lg border px-4 transition-colors"
+						:href="contracting.bookingUrl"
+						target="_blank"
+						rel="noopener"
+						class="bg-accent flex h-10 items-center gap-2 rounded-lg px-4 font-semibold text-white transition-opacity hover:opacity-85"
 					>
 						<svg
-							class="text-accent size-4 shrink-0"
+							class="size-4 shrink-0"
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
 							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
+							aria-hidden="true"
 						>
-							<rect x="2" y="4" width="20" height="16" rx="2" />
-							<path d="m2 7 10 7L22 7" />
+							<rect x="3" y="4" width="18" height="18" rx="2" />
+							<path d="M16 2v4M8 2v4M3 10h18" />
 						</svg>
-						{{ profile.email }}
+						book a free call
 					</a>
 					<a
 						:href="profile.linkedin"

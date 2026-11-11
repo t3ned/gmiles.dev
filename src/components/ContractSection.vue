@@ -13,25 +13,9 @@ import SectionLabel from "./SectionLabel.vue";
 				<p class="text-ink max-w-lg text-lg leading-relaxed">{{ contracting.pitch }}</p>
 
 				<ul class="text-soft mt-6 space-y-3 text-sm leading-relaxed">
-					<li class="flex gap-3">
-						<span class="text-accent font-mono" aria-hidden="true">01</span>
-						<span>
-							Engagements start from
-							<span class="text-ink font-medium">{{ contracting.minimum }}</span>
-						</span>
-					</li>
-					<li class="flex gap-3">
-						<span class="text-accent font-mono" aria-hidden="true">02</span>
-						<span>
-							{{ contracting.consultation }}
-							<a href="/refunds" class="text-accent underline underline-offset-4 transition-opacity hover:opacity-80">
-								Refund policy
-							</a>
-						</span>
-					</li>
-					<li class="flex gap-3">
-						<span class="text-accent font-mono" aria-hidden="true">03</span>
-						{{ contracting.capacity }}
+					<li v-for="(point, i) in contracting.points" :key="point" class="flex gap-3">
+						<span class="text-accent font-mono" aria-hidden="true">0{{ i + 1 }}</span>
+						{{ point }}
 					</li>
 				</ul>
 
@@ -41,7 +25,7 @@ import SectionLabel from "./SectionLabel.vue";
 					rel="noopener"
 					class="bg-accent mt-8 inline-flex h-11 items-center gap-2 rounded-lg px-5 font-mono text-sm font-semibold text-white transition-opacity hover:opacity-85"
 				>
-					book a consultation
+					book a free consultation
 					<svg
 						class="size-4"
 						viewBox="0 0 24 24"
