@@ -27,11 +27,10 @@ export interface School {
 
 export const profile = {
 	name: "George Miles",
-	role: "Senior Backend Engineer",
-	tagline: "Backend at the core. Full stack from the ground up.",
+	tagline: "Owner of Stats.cc, giving 250 million players the tools to track, analyse and improve their performance.",
 	summary:
-		"I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
-	location: "England · remote, worldwide",
+		"I joined Stats.cc as a founding engineer and now run the business. My background is high-performance backend work: complete rewrites in Rust, platforms processing over 3 billion real-time events, and the Kubernetes clusters underneath. These days I work across the whole stack, from Vue frontends to GitOps deployments.",
+	location: "Based in England, working remotely",
 	email: "hi@gmiles.dev",
 	linkedin: "https://linkedin.com/in/gtmmiles",
 };
@@ -67,11 +66,11 @@ export const stack: StackLayer[] = [
 export const roles: Role[] = [
 	{
 		company: "Stats.cc",
-		title: "Senior Backend Engineer & DevOps",
+		title: "Owner, previously Founding Engineer",
 		period: "Feb 2024 - Present",
 		location: "Remote, UK",
 		summary:
-			"Early member leading backend architecture and infrastructure for a gaming statistics platform on a mission to help 500 million players improve.",
+			"Joined the founders in 2024 to lead backend architecture and run all of the infrastructure for a gaming statistics platform. Took over the business in October 2026 and now handle everything from infrastructure to product direction and strategy.",
 		highlights: [
 			"25+ Rust microservices on production Kubernetes",
 			"Full system rewrite in Rust: 10x faster, ~20% cheaper",
@@ -79,12 +78,12 @@ export const roles: Role[] = [
 		],
 	},
 	{
-		company: "LinkMe",
-		title: "Senior Backend Engineer",
+		company: "Linkme",
+		title: "Backend Engineer",
 		period: "Apr - Jul 2025",
 		location: "Remote, UK",
 		summary:
-			"Four-month contract designing and shipping a TypeScript authentication service, delivered while continuing to lead engineering at Stats.cc.",
+			"Four-month contract building an authentication service with OAuth 2.0 and MFA, integrated with the existing legacy systems, alongside my work at Stats.cc.",
 		highlights: [
 			"OAuth 2.0 + MFA, expanding login options from 1 to 4",
 			"Replaced a brittle untyped flow with type-safe auth",
@@ -92,7 +91,7 @@ export const roles: Role[] = [
 	},
 	{
 		company: "Enthusiast Gaming",
-		title: "Backend Engineer · Tabstats",
+		title: "Backend Engineer, Tabstats",
 		period: "Mar 2022 - Jan 2023",
 		location: "Remote, UK",
 		summary: "Engineered high-performance backend services powering real-time player statistics and analysis.",
@@ -103,14 +102,14 @@ export const roles: Role[] = [
 	},
 	{
 		company: "Tabwire",
-		title: "Operations Engineer",
+		title: "Community Management",
 		period: "Nov 2020 - Mar 2022",
 		location: "Remote, UK",
 		summary:
-			"First production engineering: built internal moderation tooling for team workflows across social platforms and community forums.",
+			"Customer support across social accounts and forums before Enthusiast Gaming's $11M acquisition of Tabwire.",
 		highlights: [
-			"User pain points from support later shaped backend priorities",
-			"Joined pre-acquisition; Tabwire sold to Enthusiast for $11M",
+			"Built tooling to support the team's moderation processes",
+			"What players struggled with later shaped my backend priorities",
 		],
 	},
 ];
@@ -134,16 +133,16 @@ export const contracting = {
 export const schools: School[] = [
 	{
 		name: "Henley Business School",
-		qualification: "BSc Entrepreneurship · University of Reading",
+		qualification: "BSc Entrepreneurship, University of Reading",
 		period: "2023 - 2026",
 		detail: "Business strategy, finance, and team management, studied alongside full-time engineering work.",
 		headline: "First",
 		headlineNote: "honours",
 		awards: [
 			"Best Overall Performance Business",
-			"Best Business and Management Student (Entrepreneurship)",
+			"Best Business and Management Student (Entrepreneurship and Innovation)",
 			"Dean's Excellence Award Entrepreneurship",
-			"Greenshoots Seed Finance Award 2026",
+			"Henley Greenshoots Seed Finance Award 2026",
 		],
 	},
 	{
