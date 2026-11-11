@@ -49,7 +49,7 @@ Prefer popular, well-maintained packages over hand-rolling functionality for any
 
 **Content vs markup:** All copy, links, and profile data live in `src/data.ts`. Components render data, they do not embed prose.
 
-**Icons:** Inline SVG only. No emojis or unicode symbols as icons. Terminal ASCII art (tree glyphs, interpuncts) is content, not iconography.
+**Icons:** Inline SVG only. No emojis or unicode symbols as icons.
 
 ## Typography
 
