@@ -24,7 +24,7 @@ import Section from "./Section.astro";
 				{school.subjects && (
 					<dl class="border-line max-w-md border-t sm:col-span-2">
 						{school.subjects.map(({ subject, grade }) => (
-							<div class="border-line flex items-baseline justify-between border-b py-2.5">
+							<div class="border-line flex items-baseline justify-between border-b py-2.5 last:border-b-0">
 								<dt class="text-soft">{subject}</dt>
 								<dd class="text-ink font-semibold tabular-nums">{grade}</dd>
 							</div>
@@ -35,7 +35,7 @@ import Section from "./Section.astro";
 				{school.awards && (
 					<ul class="border-line max-w-2xl border-t sm:col-span-2">
 						{school.awards.map((award) => (
-							<li class="border-line text-ink flex gap-3 border-b py-2.5 leading-snug">
+							<li class="border-line text-ink flex gap-3 border-b py-2.5 leading-snug last:border-b-0">
 								<svg
 									class="text-accent mt-px size-[1.125rem] shrink-0"
 									viewBox="0 0 24 24"
