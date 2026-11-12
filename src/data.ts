@@ -170,13 +170,13 @@ export const schools: School[] = [
 		name: "Henley Business School",
 		qualification: "BSc Entrepreneurship · University of Reading",
 		period: "2023 – 2026",
-		detail: "Graduated top of my class, studying business strategy, finance and team management alongside full-time engineering work.",
+		detail: "Graduated top of my class, studying business strategy, finance and team management while building Stats.cc.",
 		headline: "First",
 		headlineNote: "Honours",
 		awards: [
 			{
 				name: "Best Overall Performance Business",
-				about: "Awarded to the student with the strongest overall results across the business programme.",
+				about: "Awarded by the Dean for the best overall academic performance across the business programme.",
 			},
 			{
 				name: "Best Business and Management Student (Entrepreneurship and Innovation)",

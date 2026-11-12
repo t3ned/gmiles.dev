@@ -15,7 +15,7 @@ import Section from "./Section.astro";
 				</div>
 
 				<p class="flex items-baseline gap-2 sm:flex-col sm:items-end sm:gap-0 sm:text-right">
-					<span class="text-ink text-4xl leading-none font-bold tracking-[-0.03em] sm:text-5xl">
+					<span class="text-accent text-4xl leading-none font-bold tracking-[-0.03em] sm:text-5xl">
 						{school.headline}
 					</span>
 					<span class="text-soft text-sm sm:mt-2">{school.headlineNote}</span>
@@ -24,16 +24,9 @@ import Section from "./Section.astro";
 				{school.subjects && (
 					<dl class="border-line max-w-md border-t sm:col-span-2">
 						{school.subjects.map(({ subject, grade }) => (
-							<div class="border-line flex items-center justify-between border-b py-2 last:border-b-0">
+							<div class="border-line flex items-baseline justify-between border-b py-2.5 last:border-b-0">
 								<dt class="text-soft">{subject}</dt>
-								<dd
-									class:list={[
-										"rounded-md px-2 py-0.5 text-sm font-semibold tabular-nums",
-										grade.startsWith("A") ? "bg-accent/12 text-accent" : "bg-line text-ink",
-									]}
-								>
-									{grade}
-								</dd>
+								<dd class="text-ink font-semibold tabular-nums">{grade}</dd>
 							</div>
 						))}
 					</dl>
