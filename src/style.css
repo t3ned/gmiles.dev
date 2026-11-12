@@ -181,15 +181,22 @@ li:last-child > .role-seg {
 	scale: 1 0;
 }
 
+/* The timeline lives in its own rule. The CSS minifier folds animation-timeline into the animation shorthand when they share a rule, and browsers drop that declaration */
 @supports (animation-timeline: view()) {
 	.role-seg-fill {
 		animation: rail-fill linear both;
-		animation-timeline: --seg;
 		animation-range: cover 50vh cover calc(100% - 50vh);
+	}
+
+	.role-seg > .role-seg-fill {
+		animation-timeline: --seg;
 	}
 
 	.role-dot {
 		animation: role-dot linear both;
+	}
+
+	li > .role-dot {
 		animation-timeline: view();
 	}
 }
