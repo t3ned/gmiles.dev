@@ -3,21 +3,43 @@ import { Font, getImage } from "astro:assets";
 import headshot from "@/assets/headshot.jpg";
 import SiteFooter from "@/components/SiteFooter.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
-import { profile } from "@/data";
+import { profile, schools, stack } from "@/data";
 import "@/style.css";
 
 interface Props {
 	title: string;
+	/** Search snippet and social description. Falls back to the profile description */
+	description?: string;
 	/** Shows the section nav. Only the home page has sections to jump to */
 	nav?: boolean;
+	/** Adds Person structured data. Only the home page is about George */
+	person?: boolean;
+	/** Keeps the page out of search results */
+	noindex?: boolean;
 }
 
-const { title, nav = false } = Astro.props;
+const { title, description = profile.description, nav = false, person = false, noindex = false } = Astro.props;
 
 // Pages build as name.html, so drop the extension and index for the public URL
 const canonical = new URL(Astro.url.pathname.replace(/(index)?\.html$/, ""), Astro.site).href;
 const og = await getImage({ src: headshot, width: 640, height: 640, format: "jpg" });
 const ogImage = new URL(og.src, Astro.site).href;
+
+const [jobTitle, company] = profile.role.split(", ");
+const personData = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: profile.name,
+	url: Astro.site?.href,
+	image: ogImage,
+	description: profile.description,
+	jobTitle,
+	worksFor: { "@type": "Organization", name: company, url: profile.companyUrl },
+	address: { "@type": "PostalAddress", addressRegion: profile.location, addressCountry: "GB" },
+	alumniOf: schools.map((school) => ({ "@type": "EducationalOrganization", name: school.name })),
+	knowsAbout: stack.flatMap((layer) => layer.items),
+	sameAs: [profile.linkedin],
+};
 
 const links = [
 	{ href: "#experience", label: "Experience" },
@@ -28,16 +50,19 @@ const links = [
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content={profile.description} />
-		<link rel="canonical" href={canonical} />
+		<meta name="description" content={description} />
+		<meta name="author" content={profile.name} />
+		{noindex && <meta name="robots" content="noindex" />}
+		{!noindex && <link rel="canonical" href={canonical} />}
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="gmiles.dev" />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content={profile.description} />
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content="en_GB" />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:image:width" content="640" />
@@ -52,6 +77,7 @@ const links = [
 		<Font cssVariable="--font-jetbrains" />
 
 		<title>{title}</title>
+		{person && <script is:inline type="application/ld+json" set:html={JSON.stringify(personData)} />}
 
 		<script is:inline>
 			// Apply theme before first paint to avoid a flash of the wrong theme

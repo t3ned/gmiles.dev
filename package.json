@@ -13,6 +13,7 @@
 		"preview": "bun --bun astro preview"
 	},
 	"dependencies": {
+		"@astrojs/sitemap": "^3.7.4",
 		"astro": "^7.4.11"
 	},
 	"devDependencies": {

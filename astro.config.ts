@@ -1,3 +1,4 @@
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
@@ -5,6 +6,7 @@ export default defineConfig({
 	site: "https://gmiles.dev",
 	// Emit privacy.html rather than privacy/index.html so /privacy is served without a trailing slash redirect
 	build: { format: "file" },
+	integrations: [sitemap({ filter: (page) => !page.includes("404") })],
 	vite: { plugins: [tailwindcss()] },
 	// Downloaded at build time and served from this site, so visitors never hit Google
 	fonts: [

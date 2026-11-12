@@ -24,12 +24,16 @@ export interface School {
 	awards?: { name: string; about: string }[];
 }
 
+const bookingUrl = "https://cal.com/gmiles";
+
 export const profile = {
 	name: "George Miles",
 	role: "Managing Director, stats.cc",
 	companyUrl: "https://stats.cc",
+	// Search result title and snippet for the home page
+	metaTitle: "George Miles · Engineer & Managing Director, stats.cc",
 	description:
-		"George Miles, Managing Director of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
+		"George Miles, Managing Director of stats.cc and a backend-first full-stack engineer. Rust, distributed systems and modern frontend. Free 30 minute consultation.",
 	summary:
 		"I start with the people using our product and work back to the code. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
 	photoQuip: "Hey, you're too close to my face.",
@@ -81,8 +85,8 @@ export const terminal: Record<string, string[]> = {
 	],
 	whoami: ["George Miles, Managing Director at stats.cc"],
 	ls: ["experience  stack  education  hire"],
-	hire: ["Free 30 minute consultation, no commitment:", "https://cal.com/gmiles"],
-	"sudo hire george": ["[sudo] password for visitor: ********", "Access granted.", "https://cal.com/gmiles"],
+	hire: ["Free 30 minute consultation, no commitment:", bookingUrl],
+	"sudo hire george": ["[sudo] password for visitor: ********", "Access granted.", bookingUrl],
 	"rm -rf /": ["Nice try."],
 	exit: ["There is no escape. Try hire instead."],
 	coffee: ["418 I'm a teapot"],
@@ -152,7 +156,7 @@ export const roles: Role[] = [
 ];
 
 export const contracting = {
-	bookingUrl: "https://cal.com/gmiles",
+	bookingUrl,
 	title: "Need something built?",
 	pitch: "I take on a small number of contract projects, so each one gets proper focus. New builds from scratch, or new features, rewrites and performance work on what you already have.",
 	cta: { title: "Free 30 minute consultation", detail: "Talk through what you need, no commitment." },
