@@ -18,6 +18,7 @@
 	--c-accent-fill-hover: #a83c0a;
 	--c-on-accent: #ffffff;
 	--c-term: #171716;
+	--c-term-accent: #ff8c42;
 	--c-logo: #1e1e1e;
 	color-scheme: light;
 }
@@ -33,6 +34,7 @@
 	--c-accent-fill-hover: #f07a43;
 	--c-on-accent: #121212;
 	--c-term: #0b0b0b;
+	--c-term-accent: #ff8c42;
 	--c-logo: #ffffff;
 	color-scheme: dark;
 }
@@ -48,6 +50,7 @@
 	--color-accent-fill-hover: var(--c-accent-fill-hover);
 	--color-on-accent: var(--c-on-accent);
 	--color-term: var(--c-term);
+	--color-term-accent: var(--c-term-accent);
 }
 
 html {
@@ -163,25 +166,76 @@ body {
 		animation: role-dot linear both;
 		animation-timeline: --role;
 	}
+
+	/* A terminal cursor after the title, shown while the role is in focus */
+	.role-title::after {
+		content: "";
+		display: inline-block;
+		width: 0.5em;
+		height: 1.05em;
+		margin-left: 0.3em;
+		translate: 0 0.18em;
+		background-color: currentColor;
+		animation:
+			role-cursor linear both,
+			blink 1.1s steps(1) infinite;
+		animation-timeline: --role, auto;
+	}
+}
+
+@keyframes role-cursor {
+	0%,
+	34%,
+	66%,
+	100% {
+		scale: 0 1;
+	}
+
+	36%,
+	64% {
+		scale: 1;
+	}
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+/* Stack terminal. Lines held back until the command has typed out */
+[data-term-reveal] {
+	transition:
+		opacity 0.35s ease,
+		translate 0.35s ease;
+}
+
+.term-input:focus-visible {
+	outline: none;
+}
+
+.term-hidden {
+	opacity: 0;
+	translate: 0 4px;
 }
 
 @keyframes role-focus {
 	0%,
 	100% {
-		scale: 0.92;
-		opacity: 0.3;
+		scale: 0.88;
+		opacity: 0.25;
 	}
 
-	42%,
-	58% {
+	36%,
+	64% {
 		scale: 1;
 		opacity: 1;
 	}
 }
 
 @keyframes role-dot {
-	42%,
-	58% {
+	36%,
+	64% {
 		background-color: var(--c-accent);
 	}
 }
@@ -201,7 +255,12 @@ body {
 
 	.group:hover .stats-logo path,
 	.role-body,
-	.role-dot {
+	.role-dot,
+	.role-title::after {
 		animation: none;
+	}
+
+	.role-title::after {
+		display: none;
 	}
 }

@@ -70,6 +70,25 @@ export const stack: StackLayer[] = [
 	},
 ];
 
+// Replies for the stack terminal easter egg. Lines that are URLs render as links
+export const terminal: Record<string, string[]> = {
+	help: [
+		"whoami     who is this",
+		"ls         list sections",
+		"cd <dir>   jump to a section",
+		"hire       book a free call",
+		"clear      clear the screen",
+	],
+	whoami: ["George Miles, Managing Director at stats.cc"],
+	ls: ["experience  stack  education  hire"],
+	hire: ["Free 30 minute consultation, no commitment:", "https://cal.com/gmiles"],
+	"sudo hire george": ["[sudo] password for visitor: ********", "Access granted.", "https://cal.com/gmiles"],
+	"rm -rf /": ["Nice try."],
+	exit: ["There is no escape. Try hire instead."],
+	coffee: ["418 I'm a teapot"],
+	vim: ["You are now trapped. Just kidding, this is not vim."],
+};
+
 export const roles: Role[] = [
 	{
 		company: "Stats.cc",
