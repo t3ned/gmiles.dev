@@ -9,7 +9,6 @@ export interface Role {
 	company: string;
 	title: string;
 	period: string;
-	location: string;
 	summary: string;
 	highlights: string[];
 }
@@ -76,60 +75,59 @@ export const roles: Role[] = [
 		company: "Stats.cc",
 		title: "Managing Director",
 		period: "Oct 2026 – Present",
-		location: "Remote, UK",
 		summary:
 			"Took over the business I helped build. Now leading everything from infrastructure, backend and frontend to product direction and business strategy, on a mission to give 250 million gamers the tools to track, analyse and improve their performance.",
 		highlights: [
 			"Own product direction and business strategy end to end",
 			"Still hands-on across infrastructure, backend and frontend",
+			"Implementing user feedback in real time",
 		],
 	},
 	{
 		company: "Stats.cc",
 		title: "Founding Engineer",
 		period: "Feb 2024 – Present",
-		location: "Remote, UK",
 		summary:
 			"Joined the founders after building a similar side project around the same time. Led backend architecture and built and ran all of the infrastructure, then moved into full stack to ship frontend features too.",
 		highlights: [
-			"25+ Rust microservices on production Kubernetes",
+			"25+ microservices on production Kubernetes",
 			"Full system rewrite in Rust: 10x faster, ~20% cheaper",
-			"GitOps pipelines shipping releases in under 10 minutes",
+			"Databases holding tens of billions of records",
+			"GitOps pipelines shipping releases in under 7 minutes",
 		],
 	},
 	{
 		company: "Linkme",
 		title: "Backend Engineer",
 		period: "Apr – Jul 2025",
-		location: "Remote, UK",
 		summary:
-			"Four-month contract architecting a TypeScript authentication service and integrating it with legacy systems, delivered while continuing to lead engineering at Stats.cc.",
+			"Architected a TypeScript authentication service and integrated it with legacy systems, delivered while continuing to lead engineering at Stats.cc.",
 		highlights: [
 			"OAuth 2.0 + MFA, expanding login options from 1 to 4",
 			"Replaced a brittle untyped flow with type-safe auth",
+			"Worked on a high-performance Rust service",
 		],
 	},
 	{
 		company: "Enthusiast Gaming",
 		title: "Backend Engineer · Tabstats",
 		period: "Mar 2022 – Jan 2023",
-		location: "Remote, UK",
 		summary: "Engineered high-performance backend services powering real-time player statistics and analysis.",
 		highlights: [
-			"Real-time processing of 3B+ in-game events",
-			"Scaled the merged platform after the $11M Tabwire acquisition",
+			"Backend service ingesting 3B+ in-game events in real time",
+			"Built the app's match event processing and storage for fast local querying",
 		],
 	},
 	{
 		company: "Enthusiast Gaming",
 		title: "Community Management · Tabwire",
 		period: "Nov 2020 – Mar 2022",
-		location: "Remote, UK",
 		summary:
-			"Joined Tabwire before the acquisition, providing responsive support across social accounts and forums, and built tooling for the team's moderation processes.",
+			"Provided responsive support across Tabwire's social accounts and forums, and built tooling for the team's moderation processes.",
 		highlights: [
+			"Improved the moderation pipeline",
 			"User pain points from support later shaped backend priorities",
-			"Joined pre-acquisition; Tabwire sold to Enthusiast for $11M",
+			"Joined before Enthusiast Gaming acquired Tabwire for $11M",
 		],
 	},
 ];

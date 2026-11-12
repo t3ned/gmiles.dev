@@ -147,6 +147,45 @@ body {
 	animation-delay: 120ms;
 }
 
+/* Experience. Each role zooms up to full size and ink as it crosses the middle of the viewport, and its dot fills. Browsers without view timelines show everything at rest */
+@supports (animation-timeline: view()) {
+	.role {
+		view-timeline-name: --role;
+	}
+
+	.role-body {
+		transform-origin: left center;
+		animation: role-focus linear both;
+		animation-timeline: --role;
+	}
+
+	.role-dot {
+		animation: role-dot linear both;
+		animation-timeline: --role;
+	}
+}
+
+@keyframes role-focus {
+	0%,
+	100% {
+		scale: 0.92;
+		opacity: 0.3;
+	}
+
+	42%,
+	58% {
+		scale: 1;
+		opacity: 1;
+	}
+}
+
+@keyframes role-dot {
+	42%,
+	58% {
+		background-color: var(--c-accent);
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
@@ -160,7 +199,9 @@ body {
 		transition: none;
 	}
 
-	.group:hover .stats-logo path {
+	.group:hover .stats-logo path,
+	.role-body,
+	.role-dot {
 		animation: none;
 	}
 }
