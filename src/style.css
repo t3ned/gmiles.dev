@@ -150,7 +150,7 @@ body {
 	animation-delay: 120ms;
 }
 
-/* Experience timeline. Each segment of the rail runs from one dot to the next and fills as the next role reaches the middle of the screen, and each dot lights as it crosses the middle. Browsers without view timelines show the plain rail */
+/* Experience timeline. Each segment of the rail runs from one dot to the next (or to the end of the last role) and fills as the next role reaches the middle of the screen, and each dot lights as it crosses the middle. Browsers without view timelines show the plain rail */
 .role-seg {
 	position: absolute;
 	top: 0.88rem;
@@ -168,8 +168,9 @@ body {
 	background-color: var(--c-line);
 }
 
+/* The last role in a company has no next dot, so its segment runs to the end of the role */
 li:last-child > .role-seg {
-	display: none;
+	bottom: 0;
 }
 
 .role-seg-fill {

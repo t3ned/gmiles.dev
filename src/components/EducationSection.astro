@@ -24,9 +24,16 @@ import Section from "./Section.astro";
 				{school.subjects && (
 					<dl class="border-line max-w-md border-t sm:col-span-2">
 						{school.subjects.map(({ subject, grade }) => (
-							<div class="border-line flex items-baseline justify-between border-b py-2.5 last:border-b-0">
+							<div class="border-line flex items-center justify-between border-b py-2 last:border-b-0">
 								<dt class="text-soft">{subject}</dt>
-								<dd class="text-ink font-semibold tabular-nums">{grade}</dd>
+								<dd
+									class:list={[
+										"rounded-md px-2 py-0.5 text-sm font-semibold tabular-nums",
+										grade.startsWith("A") ? "bg-accent/12 text-accent" : "bg-line text-ink",
+									]}
+								>
+									{grade}
+								</dd>
 							</div>
 						))}
 					</dl>
@@ -34,8 +41,12 @@ import Section from "./Section.astro";
 
 				{school.awards && (
 					<ul class="border-line max-w-2xl border-t sm:col-span-2">
-						{school.awards.map((award) => (
-							<li class="border-line text-ink flex gap-3 border-b py-2.5 leading-snug last:border-b-0">
+						{school.awards.map((award, i) => (
+							<li
+								class="border-line text-ink group relative flex gap-3 border-b py-2.5 leading-snug outline-offset-2 last:border-b-0"
+								tabindex="0"
+								aria-describedby={`award-${i}`}
+							>
 								<svg
 									class="text-accent mt-px size-[1.125rem] shrink-0"
 									viewBox="0 0 24 24"
@@ -49,7 +60,16 @@ import Section from "./Section.astro";
 									<circle cx="12" cy="8" r="6" />
 									<path d="M15.5 13 17 22l-5-3-5 3 1.5-9" />
 								</svg>
-								{award}
+								<span class="decoration-soft/50 underline decoration-dotted underline-offset-4">
+									{award.name}
+								</span>
+								<span
+									id={`award-${i}`}
+									role="tooltip"
+									class="bg-ink text-bg pointer-events-none absolute top-full left-7 z-10 -mt-1 w-max max-w-xs translate-y-1 rounded-lg px-3 py-2 text-sm leading-snug opacity-0 shadow-lg transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+								>
+									{award.about}
+								</span>
 							</li>
 						))}
 					</ul>

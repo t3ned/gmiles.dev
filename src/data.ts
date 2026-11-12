@@ -21,7 +21,7 @@ export interface School {
 	headline: string;
 	headlineNote: string;
 	subjects?: { subject: string; grade: string }[];
-	awards?: string[];
+	awards?: { name: string; about: string }[];
 }
 
 export const profile = {
@@ -170,20 +170,33 @@ export const schools: School[] = [
 		name: "Henley Business School",
 		qualification: "BSc Entrepreneurship · University of Reading",
 		period: "2023 – 2026",
-		detail: "Business strategy, finance, and team management, studied alongside full-time engineering work.",
+		detail: "Graduated top of my class, studying business strategy, finance and team management alongside full-time engineering work.",
 		headline: "First",
 		headlineNote: "Honours",
 		awards: [
-			"Best Overall Performance Business",
-			"Best Business and Management Student (Entrepreneurship and Innovation)",
-			"Dean's Excellence Award Entrepreneurship",
-			"Henley Greenshoots Seed Finance Award 2026",
+			{
+				name: "Best Overall Performance Business",
+				about: "Awarded to the student with the strongest overall results across the business programme.",
+			},
+			{
+				name: "Best Business and Management Student (Entrepreneurship and Innovation)",
+				about: "The top student on the Entrepreneurship and Innovation pathway.",
+			},
+			{
+				name: "Dean's Excellence Award Entrepreneurship",
+				about: "The Dean's award for outstanding achievement in entrepreneurship.",
+			},
+			{
+				name: "Henley Greenshoots Seed Finance Award 2026",
+				about: "Seed funding from Henley's Greenshoots programme, which backs promising student ventures.",
+			},
 		],
 	},
 	{
 		name: "Bexhill College",
 		qualification: "A-Levels",
 		period: "2020 – 2022",
+		detail: "Where it all started. I landed my first freelance dev work here, and building side projects is what sparked my interest in business.",
 		headline: "AAB",
 		headlineNote: "A-Levels",
 		subjects: [
