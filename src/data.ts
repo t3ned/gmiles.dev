@@ -32,7 +32,7 @@ export const profile = {
 	description:
 		"George Miles, Managing Director of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
 	summary:
-		"I start with the people using the product and work back to the code. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
+		"I start with the people using our product and work back to the code. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
 	photoQuip: "Hey, you're too close to my face.",
 	location: "England",
 	timeZone: "Europe/London",
