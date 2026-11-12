@@ -27,12 +27,12 @@ export interface School {
 
 export const profile = {
 	name: "George Miles",
-	role: "Owner, stats.cc",
+	role: "Managing Director, stats.cc",
 	companyUrl: "https://stats.cc",
 	description:
-		"George Miles, owner of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
+		"George Miles, Managing Director of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
 	summary:
-		"I own Stats.cc and still write a lot of the code behind it. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
+		"I start with the people using the product and work back to the code. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
 	photoQuip: "Hey, you're too close to my face.",
 	location: "England",
 	timeZone: "Europe/London",
@@ -74,7 +74,7 @@ export const stack: StackLayer[] = [
 export const roles: Role[] = [
 	{
 		company: "Stats.cc",
-		title: "Owner",
+		title: "Managing Director",
 		period: "Oct 2026 – Present",
 		location: "Remote, UK",
 		summary:
