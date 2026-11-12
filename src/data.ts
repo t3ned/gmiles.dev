@@ -32,7 +32,8 @@ export const profile = {
 	description:
 		"George Miles, owner of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
 	summary:
-		"I own and run Stats.cc, and I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
+		"I own Stats.cc and still write a lot of the code behind it. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
+	photoQuip: "Hey, you're too close to my face.",
 	location: "England",
 	timeZone: "Europe/London",
 	remote: "Remote, worldwide",

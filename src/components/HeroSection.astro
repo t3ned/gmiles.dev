@@ -142,16 +142,30 @@ const [title, org] = profile.role.split(", ");
 		</ul>
 	</div>
 
+	<!-- Hovering flips the portrait over to a joke on the back -->
 	<figure class="settle order-1 w-32 sm:w-40 lg:order-2 lg:w-full" style="--i: 1">
-		<Image
-			src={headshot}
-			alt="Portrait of George Miles"
-			width={640}
-			height={640}
-			loading="eager"
-			fetchpriority="high"
-			class="aspect-square w-full rounded-xl sm:rounded-2xl object-cover shadow-[0_1px_2px_rgb(0_0_0/0.08),0_24px_48px_-24px_rgb(0_0_0/0.35)] lg:aspect-[4/5]"
-		/>
+		<div class="group perspective-distant">
+			<div class="portrait relative transform-3d group-hover:rotate-y-180">
+				<Image
+					src={headshot}
+					alt="Portrait of George Miles"
+					width={640}
+					height={640}
+					loading="eager"
+					fetchpriority="high"
+					class="aspect-square w-full rounded-xl object-cover shadow-[0_1px_2px_rgb(0_0_0/0.08),0_24px_48px_-24px_rgb(0_0_0/0.35)] backface-hidden sm:rounded-2xl lg:aspect-[4/5]"
+				/>
+				<div
+					class="border-line bg-surface absolute inset-0 flex rotate-y-180 flex-col justify-end gap-2 rounded-xl border p-3 backface-hidden sm:rounded-2xl sm:p-5 lg:p-7"
+					aria-hidden="true"
+				>
+					<p class="text-sm leading-tight font-semibold tracking-[-0.02em] text-balance sm:text-lg lg:text-[1.75rem]">
+						{profile.photoQuip}
+					</p>
+					<p class="text-accent font-mono text-xs lg:text-sm">$ cd ..</p>
+				</div>
+			</div>
+		</div>
 	</figure>
 </section>
 
