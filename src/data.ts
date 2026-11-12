@@ -29,12 +29,13 @@ export const profile = {
 	name: "George Miles",
 	role: "Owner, Stats.cc",
 	companyUrl: "https://stats.cc",
-	tagline: "Backend at the core. Full\u00a0stack from the ground up.",
 	description:
 		"George Miles, owner of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
 	summary:
 		"I own and run Stats.cc, and I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
-	location: "England · remote, worldwide",
+	location: "England",
+	timeZone: "Europe/London",
+	remote: "Remote, worldwide",
 	email: "hi@gmiles.dev",
 	linkedin: "https://linkedin.com/in/gtmmiles",
 	resumeUrl:
@@ -134,12 +135,9 @@ export const roles: Role[] = [
 
 export const contracting = {
 	bookingUrl: "https://cal.com/gmiles",
-	pitch: "I take on a small number of contract projects: new builds from scratch, or new features, rewrites and performance work on what you already have.",
-	points: [
-		"Consultations are free. Book a 30 minute call and we'll talk through what you need.",
-		"Quoted fixed or hourly, whichever suits the work.",
-		"I only work with a few clients at a time, so I can give each project proper focus.",
-	],
+	title: "Need something built?",
+	pitch: "I take on a small number of contract projects, so each one gets proper focus. New builds from scratch, or new features, rewrites and performance work on what you already have.",
+	cta: { title: "Free 30 minute consultation", detail: "Talk through what you need, no commitment." },
 	terms: [
 		{ term: "Subject to contract", detail: "every engagement starts with a signed agreement" },
 		{ term: "Fully scoped", detail: "we agree exactly what's being built before work starts" },

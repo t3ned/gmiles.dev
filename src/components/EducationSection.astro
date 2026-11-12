@@ -8,9 +8,9 @@ import Section from "./Section.astro";
 		{schools.map((school) => (
 			<article class="grid gap-x-10 gap-y-5 py-8 first:pt-0 last:pb-0 sm:grid-cols-[minmax(0,1fr)_auto]">
 				<div>
-					<h3 class="text-xl font-semibold tracking-[-0.02em]">{school.name}</h3>
-					<p class="text-ink mt-1">{school.qualification}</p>
-					<p class="text-soft mt-1 font-mono text-[0.8125rem] tabular-nums">{school.period}</p>
+					<h3 class="text-2xl font-semibold tracking-[-0.025em] sm:text-[1.625rem]">{school.name}</h3>
+					<p class="text-ink mt-1.5 text-lg">{school.qualification}</p>
+					<p class="text-soft mt-1.5 font-mono text-[0.8125rem] tabular-nums">{school.period}</p>
 					{school.detail && <p class="text-soft mt-4 max-w-[60ch] leading-relaxed">{school.detail}</p>}
 				</div>
 
@@ -33,11 +33,11 @@ import Section from "./Section.astro";
 				)}
 
 				{school.awards && (
-					<ul class="grid gap-x-8 gap-y-3 sm:col-span-2 sm:grid-cols-2">
+					<ul class="border-line max-w-2xl border-t sm:col-span-2">
 						{school.awards.map((award) => (
-							<li class="text-ink flex gap-3 text-[0.9375rem] leading-snug">
+							<li class="border-line text-ink flex gap-3 border-b py-2.5 leading-snug">
 								<svg
-									class="text-accent mt-0.5 size-4 shrink-0"
+									class="text-accent mt-px size-[1.125rem] shrink-0"
 									viewBox="0 0 24 24"
 									fill="none"
 									stroke="currentColor"

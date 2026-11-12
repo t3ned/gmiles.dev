@@ -1,56 +1,32 @@
 ---
 import { contracting, profile } from "@/data";
 import Section from "./Section.astro";
-
-// The free consultation point leads the closing call to action, the rest sit with the pitch
-const [lead, ...points] = contracting.points;
 ---
 
 <Section id="hire" title="Work with me">
-	<p class="max-w-[44ch] text-xl leading-snug font-medium tracking-[-0.015em] text-balance sm:text-2xl">
-		{contracting.pitch}
-	</p>
+	<h3 class="text-2xl font-semibold tracking-[-0.025em] sm:text-[1.625rem]">{contracting.title}</h3>
+	<p class="text-soft mt-3 max-w-[60ch] text-[1.0625rem] leading-relaxed sm:text-lg">{contracting.pitch}</p>
 
-	<ul class="mt-7 space-y-3">
-		{points.map((point) => (
-			<li class="text-soft flex max-w-[68ch] gap-3 leading-relaxed">
-				<svg
-					class="text-accent mt-[0.3rem] size-4 shrink-0"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.25"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					aria-hidden="true"
-				>
-					<path d="M20 6 9 17l-5-5" />
-				</svg>
-				{point}
-			</li>
-		))}
-	</ul>
-
-	<h3 class="mt-14 text-lg font-semibold tracking-[-0.015em]">Terms</h3>
-	<dl class="border-line mt-4 border-t">
+	<dl class="border-line mt-8 border-t">
 		{contracting.terms.map((item) => (
-			<div class="border-line grid gap-x-8 gap-y-0.5 border-b py-3.5 sm:grid-cols-[12rem_minmax(0,1fr)]">
+			<div class="border-line grid gap-x-8 gap-y-0.5 border-b py-3 sm:grid-cols-[12rem_minmax(0,1fr)]">
 				<dt class="text-ink font-medium">{item.term}</dt>
 				<dd class="text-soft">{item.detail}</dd>
 			</div>
 		))}
 	</dl>
 
-	<div class="border-line bg-surface mt-14 flex flex-col gap-8 rounded-2xl border p-7 sm:p-10 xl:flex-row xl:items-end xl:justify-between">
-		<p class="max-w-[30ch] text-2xl leading-tight font-semibold tracking-[-0.025em] text-balance sm:text-3xl">
-			{lead}
-		</p>
-		<div class="flex shrink-0 flex-col items-start gap-3">
+	<div class="border-line bg-surface mt-10 flex flex-col gap-6 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+		<div>
+			<p class="text-xl font-semibold tracking-[-0.02em] sm:text-2xl">{contracting.cta.title}</p>
+			<p class="text-soft mt-1">{contracting.cta.detail}</p>
+		</div>
+		<div class="flex shrink-0 flex-col items-start gap-2.5 sm:items-end">
 			<a
 				href={contracting.bookingUrl}
 				target="_blank"
 				rel="noopener"
-				class="bg-accent-fill text-on-accent group inline-flex h-12 items-center gap-2.5 rounded-lg pr-4 pl-5 text-[0.9375rem] font-semibold shadow-[0_1px_2px_rgb(0_0_0/0.12),0_4px_14px_-4px_var(--c-accent-fill)] hover:bg-accent-fill-hover transition-[background-color,box-shadow]"
+				class="bg-accent-fill text-on-accent group inline-flex h-12 items-center gap-2.5 rounded-lg pr-4 pl-5 text-[0.9375rem] font-semibold shadow-[0_1px_2px_rgb(0_0_0/0.2)] hover:bg-accent-fill-hover transition-colors"
 			>
 				Book a free call
 				<svg
