@@ -27,7 +27,10 @@ const [title, org] = profile.role.split(", ");
 						rel="noopener"
 						class="text-ink hover:text-accent group inline-flex items-center gap-1 transition-colors"
 					>
-						<StatsLogo class="text-ink mr-0.5 size-[0.9em] shrink-0" aria-hidden="true" />
+						<StatsLogo
+							class="stats-logo mr-0.5 ml-1 size-[0.9em] shrink-0 -translate-y-[0.06em]"
+							aria-hidden="true"
+						/>
 						{org}
 						<svg
 							class="size-4 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:size-5"
