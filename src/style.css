@@ -3,8 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-	--font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
-	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+	--font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+	--font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 :root {
@@ -15,6 +15,7 @@
 	--c-line: #e3e2de;
 	--c-accent: #b8430d;
 	--c-accent-fill: #c4460e;
+	--c-accent-fill-hover: #a83c0a;
 	--c-on-accent: #ffffff;
 	--c-accent-soft: #c4460e14;
 	--c-term: #171716;
@@ -29,6 +30,7 @@
 	--c-line: #2a2a28;
 	--c-accent: #ec6b2d;
 	--c-accent-fill: #e8662a;
+	--c-accent-fill-hover: #f07a43;
 	--c-on-accent: #121212;
 	--c-accent-soft: #ec6b2d1a;
 	--c-term: #0b0b0b;
@@ -43,6 +45,7 @@
 	--color-line: var(--c-line);
 	--color-accent: var(--c-accent);
 	--color-accent-fill: var(--c-accent-fill);
+	--color-accent-fill-hover: var(--c-accent-fill-hover);
 	--color-on-accent: var(--c-on-accent);
 	--color-accent-soft: var(--c-accent-soft);
 	--color-term: var(--c-term);
@@ -72,7 +75,15 @@ body {
 :focus-visible {
 	outline: 2px solid var(--c-accent);
 	outline-offset: 3px;
-	border-radius: 4px;
+}
+
+/* Layered so utilities such as text-balance still win */
+@layer base {
+	p,
+	li,
+	dd {
+		text-wrap: pretty;
+	}
 }
 
 /* Inline text links. Accent ink with an underline that firms up on hover */

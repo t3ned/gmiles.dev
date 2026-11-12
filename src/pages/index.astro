@@ -4,10 +4,11 @@ import EducationSection from "@/components/EducationSection.astro";
 import ExperienceSection from "@/components/ExperienceSection.astro";
 import HeroSection from "@/components/HeroSection.astro";
 import StackSection from "@/components/StackSection.astro";
+import { profile } from "@/data";
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="George Miles · Full-Stack Engineer" nav>
+<Layout title={`${profile.name} · ${profile.role}`} nav>
 	<HeroSection />
 	<ExperienceSection />
 	<StackSection />

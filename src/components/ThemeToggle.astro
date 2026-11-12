@@ -41,6 +41,7 @@
 	 */
 	const apply = (dark: boolean) => {
 		root.classList.toggle("dark", dark);
+		document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#121212" : "#f6f6f4");
 		const label = dark ? "Switch to light theme" : "Switch to dark theme";
 		button?.setAttribute("title", label);
 		button?.setAttribute("aria-label", label);

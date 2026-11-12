@@ -28,7 +28,10 @@ export interface School {
 export const profile = {
 	name: "George Miles",
 	role: "Owner, Stats.cc",
-	tagline: "Backend at the core. Full stack from the ground up.",
+	companyUrl: "https://stats.cc",
+	tagline: "Backend at the core. Full\u00a0stack from the ground up.",
+	description:
+		"George Miles, owner of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
 	summary:
 		"I own and run Stats.cc, and I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
 	location: "England · remote, worldwide",
@@ -70,7 +73,7 @@ export const roles: Role[] = [
 	{
 		company: "Stats.cc",
 		title: "Owner",
-		period: "Oct 2026 - Present",
+		period: "Oct 2026 – Present",
 		location: "Remote, UK",
 		summary:
 			"Took over the business I helped build. Now leading everything from infrastructure, backend and frontend to product direction and business strategy, on a mission to give 250 million gamers the tools to track, analyse and improve their performance.",
@@ -82,7 +85,7 @@ export const roles: Role[] = [
 	{
 		company: "Stats.cc",
 		title: "Founding Engineer",
-		period: "Feb 2024 - Present",
+		period: "Feb 2024 – Present",
 		location: "Remote, UK",
 		summary:
 			"Joined the founders after building a similar side project around the same time. Led backend architecture and built and ran all of the infrastructure, then moved into full stack to ship frontend features too.",
@@ -95,7 +98,7 @@ export const roles: Role[] = [
 	{
 		company: "Linkme",
 		title: "Backend Engineer",
-		period: "Apr - Jul 2025",
+		period: "Apr – Jul 2025",
 		location: "Remote, UK",
 		summary:
 			"Four-month contract architecting a TypeScript authentication service and integrating it with legacy systems, delivered while continuing to lead engineering at Stats.cc.",
@@ -107,7 +110,7 @@ export const roles: Role[] = [
 	{
 		company: "Enthusiast Gaming",
 		title: "Backend Engineer · Tabstats",
-		period: "Mar 2022 - Jan 2023",
+		period: "Mar 2022 – Jan 2023",
 		location: "Remote, UK",
 		summary: "Engineered high-performance backend services powering real-time player statistics and analysis.",
 		highlights: [
@@ -118,7 +121,7 @@ export const roles: Role[] = [
 	{
 		company: "Enthusiast Gaming",
 		title: "Community Management · Tabwire",
-		period: "Nov 2020 - Mar 2022",
+		period: "Nov 2020 – Mar 2022",
 		location: "Remote, UK",
 		summary:
 			"Joined Tabwire before the acquisition, providing responsive support across social accounts and forums, and built tooling for the team's moderation processes.",
@@ -150,10 +153,10 @@ export const schools: School[] = [
 	{
 		name: "Henley Business School",
 		qualification: "BSc Entrepreneurship · University of Reading",
-		period: "2023 - 2026",
+		period: "2023 – 2026",
 		detail: "Business strategy, finance, and team management, studied alongside full-time engineering work.",
 		headline: "First",
-		headlineNote: "honours",
+		headlineNote: "Honours",
 		awards: [
 			"Best Overall Performance Business",
 			"Best Business and Management Student (Entrepreneurship and Innovation)",
@@ -164,9 +167,9 @@ export const schools: School[] = [
 	{
 		name: "Bexhill College",
 		qualification: "A-Levels",
-		period: "2020 - 2022",
+		period: "2020 – 2022",
 		headline: "AAB",
-		headlineNote: "a-levels",
+		headlineNote: "A-Levels",
 		subjects: [
 			{ subject: "Computer Science", grade: "A" },
 			{ subject: "Business Studies", grade: "A" },

@@ -11,18 +11,33 @@ const [title, org] = profile.role.split(", ");
 		<h1 class="settle text-[3.25rem] leading-[0.95] font-bold tracking-[-0.04em] sm:text-7xl" style="--i: 0">
 			{profile.name}
 		</h1>
-		<p
-			class="settle mt-5 inline-flex items-stretch overflow-hidden rounded-md text-sm font-semibold"
-			style="--i: 1"
-		>
-			<span class="bg-accent-fill w-1 shrink-0" aria-hidden="true"></span>
-			<span class="bg-ink text-bg px-3 py-1.5">{title}</span>
+		<p class="settle mt-3 inline-flex items-stretch rounded-md text-sm font-semibold" style="--i: 1">
+			<span class="bg-ink text-bg rounded-l-md px-3 py-1.5">{title}</span>
 			{org && (
-				<span class="border-line bg-surface text-ink rounded-r-md border border-l-0 px-3 py-1.5">{org}</span>
+				<a
+					href={profile.companyUrl}
+					target="_blank"
+					rel="noopener"
+					class="border-line bg-surface text-ink hover:text-accent hover:border-soft inline-flex items-center gap-1.5 rounded-r-md border border-l-0 px-3 py-1.5 transition-colors"
+				>
+					{org}
+					<svg
+						class="size-3 opacity-60"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M7 17 17 7M8 7h9v9"></path>
+					</svg>
+				</a>
 			)}
 		</p>
 		<p
-			class="settle mt-5 text-xl leading-snug font-medium tracking-[-0.015em] text-balance sm:text-[1.625rem]"
+			class="settle mt-6 text-xl leading-snug font-medium tracking-[-0.015em] text-balance sm:text-[1.625rem]"
 			style="--i: 1"
 		>
 			{profile.tagline}
@@ -36,7 +51,7 @@ const [title, org] = profile.role.split(", ");
 				href={contracting.bookingUrl}
 				target="_blank"
 				rel="noopener"
-				class="bg-accent-fill text-on-accent group inline-flex h-12 w-full items-center justify-center gap-2.5 sm:w-auto rounded-lg pr-4 pl-5 text-[0.9375rem] font-semibold shadow-[0_1px_2px_rgb(0_0_0/0.12),0_4px_14px_-4px_var(--c-accent-fill)] transition-[filter,box-shadow] hover:brightness-110 active:brightness-95"
+				class="bg-accent-fill text-on-accent group inline-flex h-12 w-full items-center justify-center gap-2.5 sm:w-auto rounded-lg pr-4 pl-5 text-[0.9375rem] font-semibold shadow-[0_1px_2px_rgb(0_0_0/0.12),0_4px_14px_-4px_var(--c-accent-fill)] hover:bg-accent-fill-hover transition-[background-color,box-shadow]"
 			>
 				Book a free call
 				<svg
@@ -72,12 +87,12 @@ const [title, org] = profile.role.split(", ");
 			</a>
 		</div>
 
-		<p class="settle text-soft mt-8 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm" style="--i: 4">
-			<span>{profile.location}</span>
+		<p class="settle text-soft mt-8 text-sm" style="--i: 4">
+			{profile.location}
 		</p>
 	</div>
 
-	<figure class="settle order-1 w-24 sm:w-36 lg:order-2 lg:w-full" style="--i: 1">
+	<figure class="settle order-1 w-32 sm:w-40 lg:order-2 lg:w-full" style="--i: 1">
 		<Image
 			src={headshot}
 			alt="Portrait of George Miles"

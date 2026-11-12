@@ -1,4 +1,6 @@
 ---
+import { Font, getImage } from "astro:assets";
+import headshot from "@/assets/headshot.jpg";
 import SiteFooter from "@/components/SiteFooter.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
 import { profile } from "@/data";
@@ -11,6 +13,11 @@ interface Props {
 }
 
 const { title, nav = false } = Astro.props;
+
+// Pages build as name.html, so drop the extension and index for the public URL
+const canonical = new URL(Astro.url.pathname.replace(/(index)?\.html$/, ""), Astro.site).href;
+const og = await getImage({ src: headshot, width: 640, height: 640, format: "jpg" });
+const ogImage = new URL(og.src, Astro.site).href;
 
 const links = [
 	{ href: "#experience", label: "Experience" },
@@ -25,21 +32,24 @@ const links = [
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="George Miles, senior backend engineer working the full stack. Rust, distributed systems, DevOps, and modern frontend."
-		/>
-		<meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+		<meta name="description" content={profile.description} />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="gmiles.dev" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={profile.description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="640" />
+		<meta property="og:image:height" content="640" />
+		<meta property="og:image:alt" content="Portrait of George Miles" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="theme-color" content="#f6f6f4" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:ital,wght@0,400..800;1,400&display=swap"
-			rel="stylesheet"
-		/>
+		<Font cssVariable="--font-schibsted" preload />
+		<Font cssVariable="--font-jetbrains" />
 
 		<title>{title}</title>
 
@@ -51,6 +61,9 @@ const links = [
 					pref === "dark" ||
 					((pref === null || pref === "system") && window.matchMedia("(prefers-color-scheme: dark)").matches);
 				document.documentElement.classList.toggle("dark", dark);
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute("content", dark ? "#121212" : "#f6f6f4");
 			})();
 		</script>
 	</head>

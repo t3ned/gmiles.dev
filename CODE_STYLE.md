@@ -62,6 +62,8 @@ Prefer popular, well-maintained packages over hand-rolling functionality for any
 
 One family carries the whole hierarchy through size, weight and tracking. Headings track tight (`-0.02em` to `-0.04em` for the hero name), body copy sits at a 60 to 68ch measure with `leading-relaxed`. Figures inside experience highlights are set in heavier ink by `splitFigures`. Mono is for code, data and dates only, never decoration.
 
+Fonts are self-hosted through Astro's fonts API (`fonts` in `astro.config.ts`, `<Font>` in `Layout.astro`). They download at build time, so visitors never request anything from Google. Keep it that way: the privacy policy says the site does no tracking.
+
 ## Theming
 
 Hex colors in CSS vars, defined in `src/style.css` (`:root` for light, `.dark` overrides) and exposed to Tailwind via `@theme inline`. Light/dark via `.dark` class on `<html>`, applied pre-paint by the inline script in `Layout.astro`. Neutral grounds: soft off-white light theme (`#f6f6f4`), deep neutral charcoal dark theme (`#121212`). Orange is a precise accent for links, the primary button, role titles and small highlights. The stack terminal stays dark in both themes.
