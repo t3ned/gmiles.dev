@@ -27,7 +27,7 @@ export interface School {
 
 export const profile = {
 	name: "George Miles",
-	role: "Owner, Stats.cc",
+	role: "Owner, stats.cc",
 	companyUrl: "https://stats.cc",
 	description:
 		"George Miles, owner of Stats.cc and a backend-first engineer working the full stack. Rust, distributed systems and modern frontend. Book a free 30 minute consultation.",
