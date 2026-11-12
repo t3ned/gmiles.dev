@@ -1,0 +1,184 @@
+---
+import { stack, terminal } from "@/data";
+import Section from "./Section.astro";
+
+const command = "tree ./career";
+---
+
+<Section id="stack" title="Stack">
+	<!-- Terminal window: dark in both themes. Types itself out on first view, and the last prompt takes commands -->
+	<div
+		class="bg-term overflow-hidden rounded-xl shadow-[0_1px_2px_rgb(0_0_0/0.1),0_20px_40px_-24px_rgb(0_0_0/0.45)] ring-1 ring-black/5 dark:ring-white/10"
+		data-term
+	>
+		<div class="flex items-center gap-2 border-b border-white/[0.07] px-4 py-3">
+			<span class="size-2.5 rounded-full bg-white/15" aria-hidden="true"></span>
+			<span class="size-2.5 rounded-full bg-white/15" aria-hidden="true"></span>
+			<span class="size-2.5 rounded-full bg-white/15" aria-hidden="true"></span>
+			<span class="ml-auto font-mono text-xs text-white/45">george@gmiles: ~/stack</span>
+		</div>
+
+		<div
+			class="term-screen h-[33.5rem] overflow-auto overscroll-contain p-5 font-mono text-[0.8125rem] leading-relaxed sm:h-[26rem] sm:p-7 sm:text-sm"
+			data-term-screen
+		>
+			<p class="text-white/60">
+				<span class="text-term-accent">$</span> <span class="sr-only">{command} --sort started</span>
+				<span aria-hidden="true">
+					<span data-term-command>{command}</span>{" "}
+					<span class="text-white/45" data-term-reveal>
+						--sort started
+					</span>
+				</span>
+			</p>
+
+			<div class="mt-5 space-y-4">
+				{stack.map((layer, i) => (
+					<div data-term-reveal>
+						<p class="-indent-[4ch] pl-[4ch]">
+							<span class="text-white/30 select-none">{i === stack.length - 1 ? "└── " : "├── "}</span>
+							<span class="text-term-accent font-medium">{layer.name}</span>
+							<span class="text-white/45"> # {layer.note}</span>
+						</p>
+						<p class="mt-1 pl-[4ch] text-white/80">
+							{layer.items.map((item, j) => (
+								<>
+									{j > 0 && <span class="text-white/30 select-none"> · </span>}
+									<span class="whitespace-nowrap">{item}</span>
+								</>
+							))}
+						</p>
+					</div>
+				))}
+			</div>
+
+			<div
+				class="mt-5 space-y-1 whitespace-pre-wrap text-white/80 empty:hidden"
+				data-term-output
+				aria-live="polite"
+			></div>
+
+			<form class="mt-5 flex items-center gap-[1ch] text-white/60" data-term-reveal data-term-form>
+				<label for="term-input" class="text-term-accent">
+					$
+				</label>
+				<input
+					id="term-input"
+					type="text"
+					autocomplete="off"
+					autocapitalize="off"
+					spellcheck="false"
+					aria-label="Terminal command. Type help to see what it does"
+					placeholder="type help"
+					class="term-input min-w-0 flex-1 bg-transparent text-white/90 caret-[var(--c-term-accent)] outline-none placeholder:text-white/25 focus:placeholder:text-transparent"
+				/>
+			</form>
+		</div>
+	</div>
+</Section>
+
+<script is:inline define:vars={{ terminal }}>
+	const term = document.querySelector("[data-term]");
+	const commandEl = term?.querySelector("[data-term-command]");
+	const reveals = [...(term?.querySelectorAll("[data-term-reveal]") ?? [])];
+	const output = term?.querySelector("[data-term-output]");
+	const form = term?.querySelector("[data-term-form]");
+	const input = form?.querySelector("input");
+	const screen = term?.querySelector("[data-term-screen]");
+	const sections = ["experience", "stack", "education", "hire"];
+
+	/**
+	 * Waits for the given number of milliseconds
+	 */
+	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+	/**
+	 * Types the command out, then reveals the tree a branch at a time
+	 */
+	const play = async () => {
+		const text = commandEl.dataset.text;
+		for (const char of text) {
+			commandEl.textContent += char;
+			await wait(55 + Math.random() * 45);
+		}
+
+		for (const el of reveals) {
+			await wait(el === reveals[0] ? 120 : 260);
+			el.classList.remove("term-hidden");
+		}
+	};
+
+	/**
+	 * Prints lines to the terminal. Lines that are URLs become links
+	 */
+	const print = (lines, muted = false) => {
+		for (const line of lines) {
+			const row = document.createElement("p");
+			if (muted) row.className = "text-white/45";
+			if (/^https?:\/\//.test(line)) {
+				const link = document.createElement("a");
+				link.href = line;
+				link.target = "_blank";
+				link.rel = "noopener";
+				link.className = "text-term-accent underline underline-offset-4";
+				link.textContent = line.replace(/^https?:\/\//, "");
+				row.append(link);
+			} else {
+				row.textContent = line;
+			}
+
+			output.append(row);
+		}
+	};
+
+	/**
+	 * Runs one command typed into the prompt
+	 */
+	const run = (raw) => {
+		const cmd = raw.trim().replace(/\s+/g, " ");
+		const key = cmd.toLowerCase();
+		if (!cmd) return;
+		print([`$ ${cmd}`], true);
+		if (key === "clear") {
+			output.replaceChildren();
+			return;
+		}
+
+		const dir = key.match(/^cd (?:\.\/|~\/)?(\w+)\/?$/)?.[1];
+		if (dir && sections.includes(dir)) {
+			print([`Jumping to ~/${dir}`]);
+			document.getElementById(dir)?.scrollIntoView({ behavior: "smooth" });
+			return;
+		}
+
+		print(Object.hasOwn(terminal, key) ? terminal[key] : [`command not found: ${cmd.split(" ")[0]}. Try help`]);
+	};
+
+	form?.addEventListener("submit", (event) => {
+		event.preventDefault();
+		run(input.value);
+		input.value = "";
+		screen.scrollTop = screen.scrollHeight;
+	});
+
+	// Clicking anywhere in the terminal focuses the prompt, unless the visitor is selecting text
+	term?.addEventListener("click", (event) => {
+		if (event.target.closest("a") || window.getSelection()?.toString()) return;
+		input?.focus({ preventScroll: true });
+	});
+
+	if (term && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+		reveals.forEach((el) => el.classList.add("term-hidden"));
+		commandEl.dataset.text = commandEl.textContent;
+		commandEl.textContent = "";
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (!entry.isIntersecting) return;
+				observer.disconnect();
+				play();
+			},
+			{ rootMargin: "0px 0px -30% 0px" },
+		);
+		observer.observe(term);
+	}
+</script>

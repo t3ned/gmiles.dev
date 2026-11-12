@@ -1,2 +1,4 @@
 User-agent: *
-Disallow: /assets/images/
+Allow: /
+
+Sitemap: https://gmiles.dev/sitemap-index.xml

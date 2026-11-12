@@ -1,0 +1,144 @@
+---
+import { Font, getImage } from "astro:assets";
+import headshot from "@/assets/headshot.jpg";
+import SiteFooter from "@/components/SiteFooter.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { profile, schools, stack } from "@/data";
+import "@/style.css";
+
+interface Props {
+	title: string;
+	/** Search snippet and social description. Falls back to the profile description */
+	description?: string;
+	/** Shows the section nav. Only the home page has sections to jump to */
+	nav?: boolean;
+	/** Adds Person structured data. Only the home page is about George */
+	person?: boolean;
+	/** Keeps the page out of search results */
+	noindex?: boolean;
+}
+
+const { title, description = profile.description, nav = false, person = false, noindex = false } = Astro.props;
+
+// Pages build as name.html, so drop the extension and index for the public URL
+const canonical = new URL(Astro.url.pathname.replace(/(index)?\.html$/, ""), Astro.site).href;
+const og = await getImage({ src: headshot, width: 640, height: 640, format: "jpg" });
+const ogImage = new URL(og.src, Astro.site).href;
+
+const [jobTitle, company] = profile.role.split(", ");
+const personData = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: profile.name,
+	url: Astro.site?.href,
+	image: ogImage,
+	description: profile.description,
+	jobTitle,
+	worksFor: { "@type": "Organization", name: company, url: profile.companyUrl },
+	address: { "@type": "PostalAddress", addressRegion: profile.location, addressCountry: "GB" },
+	alumniOf: schools.map((school) => ({ "@type": "EducationalOrganization", name: school.name })),
+	knowsAbout: stack.flatMap((layer) => layer.items),
+	sameAs: [profile.linkedin],
+};
+
+const links = [
+	{ href: "#experience", label: "Experience" },
+	{ href: "#stack", label: "Stack" },
+	{ href: "#education", label: "Education" },
+	{ href: "#hire", label: "Hire" },
+];
+---
+
+<!doctype html>
+<html lang="en-GB">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="author" content={profile.name} />
+		{noindex && <meta name="robots" content="noindex" />}
+		{!noindex && <link rel="canonical" href={canonical} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="gmiles.dev" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content="en_GB" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="640" />
+		<meta property="og:image:height" content="640" />
+		<meta property="og:image:alt" content="Portrait of George Miles" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="theme-color" content="#f6f6f4" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<Font cssVariable="--font-schibsted" preload />
+		<Font cssVariable="--font-jetbrains" />
+
+		<title>{title}</title>
+		{person && <script is:inline type="application/ld+json" set:html={JSON.stringify(personData)} />}
+
+		<script is:inline>
+			// Apply theme before first paint to avoid a flash of the wrong theme
+			(() => {
+				const pref = localStorage.getItem("theme");
+				const dark =
+					pref === "dark" ||
+					((pref === null || pref === "system") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+				document.documentElement.classList.toggle("dark", dark);
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute("content", dark ? "#121212" : "#f6f6f4");
+			})();
+		</script>
+	</head>
+	<body class="flex min-h-screen flex-col">
+		<a
+			href="#main"
+			class="bg-accent-fill text-on-accent sr-only rounded-md px-3 py-2 text-sm font-medium focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+		>
+			Skip to content
+		</a>
+
+		<header class="border-line bg-bg sticky top-0 z-20 border-b">
+			<div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+				<a href="/" class="group flex items-baseline gap-2.5 font-mono text-sm" aria-label="gmiles.dev home">
+					<span class="font-medium">
+						<span class="text-accent">~/</span>gmiles.dev
+					</span>
+					<span class="text-soft" aria-hidden="true">
+						$ whoami
+						<span class="bg-accent ml-1 inline-block h-[1.05em] w-[0.5em] translate-y-[0.18em]"></span>
+					</span>
+				</a>
+
+				<div class="flex items-center gap-1 sm:gap-2">
+					{nav && (
+						<nav class="mr-3 hidden items-center gap-7 text-sm md:flex" aria-label="Sections">
+							{links.map((link) => (
+								<a href={link.href} class="text-soft hover:text-ink transition-colors">
+									{link.label}
+								</a>
+							))}
+						</nav>
+					)}
+					<a
+						href={profile.resumeUrl}
+						class="text-ink hover:bg-surface hover:border-line flex h-9 items-center gap-2 rounded-lg border border-transparent px-3 text-sm font-medium transition-colors"
+					>
+						<span class="hidden sm:inline">Request resume</span>
+						<span class="sm:hidden">Resume</span>
+					</a>
+					<ThemeToggle />
+				</div>
+			</div>
+		</header>
+
+		<main id="main" class="mx-auto w-full max-w-6xl flex-1 px-5 sm:px-8">
+			<slot />
+		</main>
+
+		<SiteFooter />
+	</body>
+</html>

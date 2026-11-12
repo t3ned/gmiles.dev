@@ -3,29 +3,40 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-	--font-display: "Bricolage Grotesque", ui-sans-serif, sans-serif;
-	--font-sans: "Instrument Sans", ui-sans-serif, sans-serif;
-	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+	--font-sans: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+	--font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 :root {
-	--c-bg: #faf8f4;
+	--c-bg: #f6f6f4;
 	--c-surface: #ffffff;
-	--c-ink: #1b1712;
-	--c-soft: #6f6a62;
-	--c-line: #e6e1d8;
-	--c-accent: #d1490f;
-	--c-accent-soft: #d1490f14;
+	--c-ink: #151514;
+	--c-soft: #5f5e5a;
+	--c-line: #e3e2de;
+	--c-accent: #b8430d;
+	--c-accent-fill: #c4460e;
+	--c-accent-fill-hover: #a83c0a;
+	--c-on-accent: #ffffff;
+	--c-term: #171716;
+	--c-term-accent: #ff8c42;
+	--c-logo: #1e1e1e;
+	color-scheme: light;
 }
 
 .dark {
-	--c-bg: #100e0c;
-	--c-surface: #18150f;
-	--c-ink: #ece7df;
-	--c-soft: #9a938a;
-	--c-line: #2b2721;
-	--c-accent: #ff8c42;
-	--c-accent-soft: #ff8c4218;
+	--c-bg: #121212;
+	--c-surface: #1a1a19;
+	--c-ink: #ececea;
+	--c-soft: #9e9d98;
+	--c-line: #2a2a28;
+	--c-accent: #ec6b2d;
+	--c-accent-fill: #e8662a;
+	--c-accent-fill-hover: #f07a43;
+	--c-on-accent: #121212;
+	--c-term: #0b0b0b;
+	--c-term-accent: #ff8c42;
+	--c-logo: #ffffff;
+	color-scheme: dark;
 }
 
 @theme inline {
@@ -35,90 +46,214 @@
 	--color-soft: var(--c-soft);
 	--color-line: var(--c-line);
 	--color-accent: var(--c-accent);
-	--color-accent-soft: var(--c-accent-soft);
+	--color-accent-fill: var(--c-accent-fill);
+	--color-accent-fill-hover: var(--c-accent-fill-hover);
+	--color-on-accent: var(--c-on-accent);
+	--color-term: var(--c-term);
+	--color-term-accent: var(--c-term-accent);
 }
 
 html {
 	scroll-behavior: smooth;
+	scrollbar-color: var(--c-line) var(--c-bg);
+	-webkit-text-size-adjust: 100%;
 }
 
 body {
 	background-color: var(--c-bg);
 	color: var(--c-ink);
 	font-family: var(--font-sans);
-	transition:
-		background-color 0.3s ease,
-		color 0.3s ease;
+	font-feature-settings: "ss01";
+	caret-color: var(--c-accent);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-	background-color: var(--c-accent);
-	color: var(--c-bg);
+	background-color: var(--c-accent-fill);
+	color: var(--c-on-accent);
 }
 
-/* Scroll reveal (via v-reveal directive) */
-.reveal {
-	opacity: 0;
-	translate: 0 18px;
-	transition:
-		opacity 0.65s ease,
-		translate 0.65s ease;
+:focus-visible {
+	outline: 2px solid var(--c-accent);
+	outline-offset: 3px;
 }
 
-.reveal.revealed {
-	opacity: 1;
-	translate: 0 0;
-}
-
-/* Blinking block cursor at the stack terminal's idle prompt */
-@keyframes cursor-blink {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0;
+/* Layered so utilities such as text-balance still win */
+@layer base {
+	p,
+	li,
+	dd {
+		text-wrap: pretty;
 	}
 }
 
-.terminal-cursor {
-	display: inline-block;
-	width: 0.55em;
-	height: 1em;
-	translate: 0 0.15em;
-	background-color: rgb(255 255 255 / 0.6);
-	animation: cursor-blink 1.1s steps(1) infinite;
+/* Inline text links. Accent ink with an underline that firms up on hover */
+.link {
+	color: var(--c-accent);
+	text-decoration-line: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.22em;
+	text-decoration-color: color-mix(in srgb, var(--c-accent) 35%, transparent);
+	transition: text-decoration-color 0.2s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
-	.terminal-cursor {
-		animation: none;
-	}
+.link:hover {
+	text-decoration-color: currentColor;
 }
 
-/* Hero load-in stagger */
-@keyframes rise-in {
+/* Hero settle. Each line arrives with a short stagger set by --i, the portrait unblurs */
+@keyframes settle {
 	from {
 		opacity: 0;
-		translate: 0 22px;
-	}
-	to {
-		opacity: 1;
-		translate: 0 0;
+		translate: 0 10px;
+		filter: blur(6px);
 	}
 }
 
-.rise {
-	animation: rise-in 0.7s ease both;
-	animation-delay: calc(var(--rise, 0) * 90ms);
+.settle {
+	animation: settle 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+	animation-delay: calc(var(--i, 0) * 70ms + 60ms);
+}
+
+/* Portrait flip. A slight overshoot so the card lands rather than stops */
+.portrait {
+	transition: transform 0.7s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+/* Stats.cc mark. On hover a ripple runs up the diagonal, the lower bar first. Each bar nudges along its axis and pulses, then settles */
+@keyframes logo-ripple {
+	30% {
+		transform: translate(10px, -10px) scale(1.16);
+	}
+
+	60% {
+		transform: translate(-3px, 3px) scale(0.95);
+	}
+}
+
+.stats-logo {
+	color: var(--c-logo);
+	overflow: visible;
+}
+
+.stats-logo path {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+.group:hover .stats-logo path {
+	animation: logo-ripple 0.7s cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+.group:hover .stats-logo path:first-child {
+	animation-delay: 120ms;
+}
+
+/* Experience timeline. Each segment of the rail runs from one dot to the next (or to the end of the last role) and fills as the next role reaches the middle of the screen, and each dot lights as it crosses the middle. Browsers without view timelines show the plain rail */
+.role-seg {
+	position: absolute;
+	top: 0.88rem;
+	bottom: calc(-1 * var(--gap) - 0.88rem);
+	left: calc(-1.5rem - 1px);
+	width: 2px;
+	view-timeline-name: --seg;
+}
+
+.role-seg::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0.5px;
+	width: 1px;
+	background-color: var(--c-line);
+}
+
+/* The last role in a company has no next dot, so its segment runs to the end of the role */
+li:last-child > .role-seg {
+	bottom: 0;
+}
+
+.role-seg-fill {
+	position: absolute;
+	inset: 0;
+	background-color: var(--c-accent);
+	transform-origin: top;
+	scale: 1 0;
+}
+
+@supports (animation-timeline: view()) {
+	.role-seg-fill {
+		animation: rail-fill linear both;
+		animation-timeline: --seg;
+		animation-range: cover 50vh cover calc(100% - 50vh);
+	}
+
+	.role-dot {
+		animation: role-dot linear both;
+		animation-timeline: view();
+	}
+}
+
+@keyframes rail-fill {
+	to {
+		scale: 1;
+	}
+}
+
+@keyframes role-dot {
+	0%,
+	48% {
+		background-color: var(--c-bg);
+		box-shadow: 0 0 0 0 transparent;
+	}
+
+	52%,
+	100% {
+		background-color: var(--c-accent);
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-accent) 25%, transparent);
+	}
+}
+
+/* Terminal scrollback */
+.term-screen {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(255 255 255 / 0.15) transparent;
+}
+
+/* Stack terminal. Lines held back until the command has typed out */
+[data-term-reveal] {
+	transition:
+		opacity 0.35s ease,
+		translate 0.35s ease,
+		visibility 0.35s;
+}
+
+.term-input:focus-visible {
+	outline: none;
+}
+
+.term-hidden {
+	opacity: 0;
+	translate: 0 4px;
+	visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.reveal,
-	.rise {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.settle {
 		animation: none;
-		opacity: 1;
-		translate: 0 0;
+	}
+
+	.portrait {
 		transition: none;
+	}
+
+	.group:hover .stats-logo path,
+	.role-seg-fill,
+	.role-dot {
+		animation: none;
 	}
 }

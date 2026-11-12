@@ -87,12 +87,12 @@ Each commit should contain one logical change. Create separate commits for:
 
 **Stage together:**
 
-- New component `ContractSection.vue` + its import and usage in `App.vue`
+- New component `ContractSection.astro` + its import and usage in `index.astro`
 - A copy change in `data.ts` + the matching markup tweak in the section component that renders it
 
 **Stage separately:**
 
-- Two new components `StackSection.vue` and `EducationSection.vue`, each with their own `App.vue` wiring
+- Two new components `StackSection.astro` and `EducationSection.astro`, each with their own `index.astro` wiring
 - A `useTheme.ts` composable change + an unrelated style fix in `style.css`
 
 ## Instructions

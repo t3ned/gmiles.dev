@@ -9,7 +9,6 @@ export interface Role {
 	company: string;
 	title: string;
 	period: string;
-	location: string;
 	summary: string;
 	highlights: string[];
 }
@@ -22,18 +21,29 @@ export interface School {
 	headline: string;
 	headlineNote: string;
 	subjects?: { subject: string; grade: string }[];
-	awards?: string[];
+	awards?: { name: string; about: string }[];
 }
+
+const bookingUrl = "https://cal.com/gmiles";
 
 export const profile = {
 	name: "George Miles",
-	role: "Senior Backend Engineer",
-	tagline: "Backend at the core. Full stack from the ground up.",
+	role: "Managing Director, stats.cc",
+	companyUrl: "https://stats.cc",
+	// Search result title and snippet for the home page
+	metaTitle: "George Miles · Engineer & Managing Director, stats.cc",
+	description:
+		"George Miles, Managing Director of stats.cc and a backend-first full-stack engineer. Rust, distributed systems and modern frontend. Free 30 minute consultation.",
 	summary:
-		"I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",
-	location: "England · remote, worldwide",
+		"I start with the people using our product and work back to the code. I've built real-time pipelines that handle billions of events and the infrastructure that keeps them running, and these days I ship the product on top as well.",
+	photoQuip: "Hey, you're too close to my face.",
+	location: "England",
+	timeZone: "Europe/London",
+	remote: "Remote, worldwide",
 	email: "hi@gmiles.dev",
 	linkedin: "https://linkedin.com/in/gtmmiles",
+	resumeUrl:
+		"mailto:hi@gmiles.dev?subject=Resume%20request&body=Hi%20George%2C%0A%0AI%20found%20gmiles.dev%20and%20would%20like%20a%20copy%20of%20your%20resume.%0A%0AName%3A%0ACompany%3A%0ARole%20in%20mind%3A%0A%0AThanks",
 };
 
 // Ordered by when each layer entered the career: backend first, frontend last
@@ -64,70 +74,98 @@ export const stack: StackLayer[] = [
 	},
 ];
 
+// Replies for the stack terminal easter egg. Lines that are URLs render as links
+export const terminal: Record<string, string[]> = {
+	help: [
+		"whoami     who is this",
+		"ls         list sections",
+		"cd <dir>   jump to a section",
+		"hire       book a free call",
+		"clear      clear the screen",
+	],
+	whoami: ["George Miles, Managing Director at stats.cc"],
+	ls: ["experience  stack  education  hire"],
+	hire: ["Free 30 minute consultation, no commitment:", bookingUrl],
+	"sudo hire george": ["[sudo] password for visitor: ********", "Access granted.", bookingUrl],
+	"rm -rf /": ["Nice try."],
+	exit: ["There is no escape. Try hire instead."],
+	coffee: ["418 I'm a teapot"],
+	vim: ["You are now trapped. Just kidding, this is not vim."],
+};
+
 export const roles: Role[] = [
 	{
 		company: "Stats.cc",
-		title: "Senior Backend Engineer & DevOps",
-		period: "Feb 2024 - Present",
-		location: "Remote, UK",
+		title: "Managing Director",
+		period: "Oct 2026 – Present",
 		summary:
-			"Early member leading backend architecture and infrastructure for a gaming statistics platform on a mission to help 500 million players improve.",
+			"Took over the business I helped build. Now leading everything from infrastructure, backend and frontend to product direction and business strategy, on a mission to give 250 million gamers the tools to track, analyse and improve their performance.",
 		highlights: [
-			"25+ Rust microservices on production Kubernetes",
-			"Full system rewrite in Rust: 10x faster, ~20% cheaper",
-			"GitOps pipelines shipping releases in under 10 minutes",
+			"Own product direction and business strategy end to end",
+			"Still hands-on across infrastructure, backend and frontend",
+			"Implementing user feedback in real time",
 		],
 	},
 	{
-		company: "LinkMe",
-		title: "Senior Backend Engineer",
-		period: "Apr - Jul 2025",
-		location: "Remote, UK",
+		company: "Stats.cc",
+		title: "Founding Engineer",
+		period: "Feb 2024 – Present",
 		summary:
-			"Four-month contract designing and shipping a TypeScript authentication service, delivered while continuing to lead engineering at Stats.cc.",
+			"Joined the founders after building a similar side project around the same time. Led backend architecture and built and ran all of the infrastructure, then moved into full stack to ship frontend features too.",
+		highlights: [
+			"25+ microservices on production Kubernetes",
+			"Full system rewrite in Rust: 10x faster, ~20% cheaper",
+			"Databases holding tens of billions of records",
+			"GitOps pipelines shipping releases in under 7 minutes",
+		],
+	},
+	{
+		company: "Linkme",
+		title: "Backend Engineer",
+		period: "Apr – Jul 2025",
+		summary:
+			"Architected a TypeScript authentication service and integrated it with legacy systems, delivered while continuing to lead engineering at Stats.cc.",
 		highlights: [
 			"OAuth 2.0 + MFA, expanding login options from 1 to 4",
 			"Replaced a brittle untyped flow with type-safe auth",
+			"Worked on a high-performance Rust service",
 		],
 	},
 	{
 		company: "Enthusiast Gaming",
 		title: "Backend Engineer · Tabstats",
-		period: "Mar 2022 - Jan 2023",
-		location: "Remote, UK",
+		period: "Mar 2022 – Jan 2023",
 		summary: "Engineered high-performance backend services powering real-time player statistics and analysis.",
 		highlights: [
-			"Real-time processing of 3B+ in-game events",
-			"Scaled the merged platform after the $11M Tabwire acquisition",
+			"Backend service ingesting 3B+ in-game events in real time",
+			"Built the app's match event processing and storage for fast local querying",
 		],
 	},
 	{
-		company: "Tabwire",
-		title: "Operations Engineer",
-		period: "Nov 2020 - Mar 2022",
-		location: "Remote, UK",
+		company: "Enthusiast Gaming",
+		title: "Community Management · Tabwire",
+		period: "Nov 2020 – Mar 2022",
 		summary:
-			"First production engineering: built internal moderation tooling for team workflows across social platforms and community forums.",
+			"Provided responsive support across Tabwire's social accounts and forums, and built tooling for the team's moderation processes.",
 		highlights: [
+			"Improved the moderation pipeline",
 			"User pain points from support later shaped backend priorities",
-			"Joined pre-acquisition; Tabwire sold to Enthusiast for $11M",
+			"Joined before Enthusiast Gaming acquired Tabwire for $11M",
 		],
 	},
 ];
 
 export const contracting = {
-	bookingUrl: "https://book.morgen.so/george",
-	pitch: "I take on a small number of contract and commission projects: MVPs, system rewrites, performance work, and full-stack builds.",
-	minimum: "£750",
-	capacity:
-		"I keep client slots deliberately limited. Live availability is on the booking calendar: if you can see a slot, I can take you on.",
-	consultation: "Consultations are £150, credited in full toward your project. If we don't go ahead, it's refunded.",
+	bookingUrl,
+	title: "Need something built?",
+	pitch: "I take on a small number of contract projects, so each one gets proper focus. New builds from scratch, or new features, rewrites and performance work on what you already have.",
+	cta: { title: "Free 30 minute consultation", detail: "Talk through what you need, no commitment." },
 	terms: [
 		{ term: "Subject to contract", detail: "every engagement starts with a signed agreement" },
 		{ term: "Fully scoped", detail: "we agree exactly what's being built before work starts" },
-		{ term: "Fixed quote", detail: "one price for the agreed scope, no surprises" },
-		{ term: "50% deposit", detail: "half up front to book the work in" },
-		{ term: "Balance on delivery", detail: "the rest is due when the work is signed off" },
+		{ term: "Fixed or hourly", detail: "one price for a defined scope, or an hourly rate for ongoing work" },
+		{ term: "50% deposit", detail: "half of the quote or estimate up front to book the work in" },
+		{ term: "Balance on delivery", detail: "the rest is invoiced when the work is signed off" },
 	],
 };
 
@@ -135,23 +173,36 @@ export const schools: School[] = [
 	{
 		name: "Henley Business School",
 		qualification: "BSc Entrepreneurship · University of Reading",
-		period: "2023 - 2026",
-		detail: "Business strategy, finance, and team management, studied alongside full-time engineering work.",
+		period: "2023 – 2026",
+		detail: "Graduated top of my class, studying business strategy, finance and team management while building Stats.cc.",
 		headline: "First",
-		headlineNote: "honours",
+		headlineNote: "Honours",
 		awards: [
-			"Best Overall Performance Business",
-			"Best Business and Management Student (Entrepreneurship)",
-			"Dean's Excellence Award Entrepreneurship",
-			"Greenshoots Seed Finance Award 2026",
+			{
+				name: "Best Overall Performance Business",
+				about: "Awarded by the Dean for the best overall academic performance across the business programme.",
+			},
+			{
+				name: "Best Business and Management Student (Entrepreneurship and Innovation)",
+				about: "The top student on the Entrepreneurship and Innovation pathway.",
+			},
+			{
+				name: "Dean's Excellence Award Entrepreneurship",
+				about: "The Dean's award for outstanding achievement in entrepreneurship.",
+			},
+			{
+				name: "Henley Greenshoots Seed Finance Award 2026",
+				about: "Seed funding from Henley's Greenshoots programme, which backs promising student ventures.",
+			},
 		],
 	},
 	{
 		name: "Bexhill College",
 		qualification: "A-Levels",
-		period: "2020 - 2022",
+		period: "2020 – 2022",
+		detail: "Where it all started. I landed my first freelance dev work here, and building side projects is what sparked my interest in business.",
 		headline: "AAB",
-		headlineNote: "a-levels",
+		headlineNote: "A-Levels",
 		subjects: [
 			{ subject: "Computer Science", grade: "A" },
 			{ subject: "Business Studies", grade: "A" },

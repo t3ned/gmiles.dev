@@ -1,6 +1,6 @@
 # gmiles.dev
 
-Personal portfolio site built with Vue 3, Tailwind CSS v4, Vite, and TypeScript on [Bun](https://bun.sh).
+Personal portfolio site built with Astro, Tailwind CSS v4, and TypeScript on [Bun](https://bun.sh).
 
 ```sh
 bun install

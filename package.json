@@ -1,28 +1,28 @@
 {
 	"name": "gmiles.dev",
-	"private": true,
 	"version": "1.0.0",
+	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "vue-tsc --noEmit && vite build",
-		"type-check": "vue-tsc --noEmit",
-		"lint": "biome check .",
-		"format": "biome check --write .",
-		"preview": "vite preview"
+		"dev": "bun --bun astro dev",
+		"build": "bun --bun astro check && bun --bun astro build",
+		"type-check": "bun --bun astro check",
+		"lint": "oxlint",
+		"format": "oxfmt",
+		"format:check": "oxfmt --check",
+		"preview": "bun --bun astro preview"
 	},
 	"dependencies": {
-		"vue": "^3.5.39"
+		"@astrojs/sitemap": "^3.7.4",
+		"astro": "^7.4.11"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.3",
-		"@tailwindcss/vite": "^4.3.2",
-		"@types/node": "^26.1.1",
-		"@vitejs/plugin-vue": "^6.0.8",
-		"@vue/tsconfig": "^0.9.1",
-		"tailwindcss": "^4.3.2",
-		"typescript": "^5",
-		"vite": "^8.1.4",
-		"vue-tsc": "^3.3.7"
+		"@astrojs/check": "^0.9.12",
+		"@astrojs/compiler-rs": "^0.5.3",
+		"@tailwindcss/vite": "^4.3.5",
+		"oxfmt": "^0.78.0",
+		"oxlint": "^1.93.0",
+		"tailwindcss": "^4.3.5",
+		"typescript": "^6.0.3"
 	}
 }

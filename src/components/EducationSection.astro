@@ -1,0 +1,73 @@
+---
+import { schools } from "@/data";
+import Section from "./Section.astro";
+---
+
+<Section id="education" title="Education">
+	<div class="divide-line -mt-2 divide-y">
+		{schools.map((school, s) => (
+			<article class="grid gap-x-10 gap-y-5 py-8 first:pt-0 last:pb-0 sm:grid-cols-[minmax(0,1fr)_auto]">
+				<div>
+					<h3 class="text-2xl font-semibold tracking-[-0.025em] sm:text-[1.625rem]">{school.name}</h3>
+					<p class="text-ink mt-1.5 text-lg">{school.qualification}</p>
+					<p class="text-soft mt-1.5 font-mono text-[0.8125rem] tabular-nums">{school.period}</p>
+					{school.detail && <p class="text-soft mt-4 max-w-[60ch] leading-relaxed">{school.detail}</p>}
+				</div>
+
+				<p class="flex items-baseline gap-2 sm:flex-col sm:items-end sm:gap-0 sm:text-right">
+					<span class="text-accent text-4xl leading-none font-bold tracking-[-0.03em] sm:text-5xl">
+						{school.headline}
+					</span>
+					<span class="text-soft text-sm sm:mt-2">{school.headlineNote}</span>
+				</p>
+
+				{school.subjects && (
+					<dl class="border-line max-w-md border-t sm:col-span-2">
+						{school.subjects.map(({ subject, grade }) => (
+							<div class="border-line flex items-baseline justify-between border-b py-2.5 last:border-b-0">
+								<dt class="text-soft">{subject}</dt>
+								<dd class="text-ink font-semibold tabular-nums">{grade}</dd>
+							</div>
+						))}
+					</dl>
+				)}
+
+				{school.awards && (
+					<ul class="border-line max-w-2xl border-t sm:col-span-2">
+						{school.awards.map((award, i) => (
+							<li
+								class="border-line text-ink group relative flex cursor-default gap-3 border-b py-2.5 leading-snug outline-offset-2 last:border-b-0"
+								tabindex="0"
+								aria-describedby={`award-${s}-${i}`}
+							>
+								<svg
+									class="text-accent mt-px size-[1.125rem] shrink-0"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.75"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+								>
+									<circle cx="12" cy="8" r="6" />
+									<path d="M15.5 13 17 22l-5-3-5 3 1.5-9" />
+								</svg>
+								<span class="decoration-soft/50 underline decoration-dotted underline-offset-4">
+									{award.name}
+								</span>
+								<span
+									id={`award-${s}-${i}`}
+									role="tooltip"
+									class="bg-ink text-bg pointer-events-none absolute top-full left-7 z-10 -mt-1 w-max max-w-[min(20rem,calc(100%-1.75rem))] translate-y-1 rounded-lg px-3 py-2 text-sm leading-snug opacity-0 shadow-lg transition group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100"
+								>
+									{award.about}
+								</span>
+							</li>
+						))}
+					</ul>
+				)}
+			</article>
+		))}
+	</div>
+</Section>

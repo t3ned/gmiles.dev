@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import { legalDocs } from "@/legal";
+
+export const getStaticPaths = (() =>
+	legalDocs.map((doc) => ({ params: { slug: doc.slug }, props: { doc } }))) satisfies GetStaticPaths;
+
+const { doc } = Astro.props;
+---
+
+<Layout
+	title={`${doc.title} · George Miles`}
+	description={`The ${doc.title.toLowerCase()} for gmiles.dev and George Miles's contract development work.`}
+>
+	<article class="mx-auto max-w-[44rem] pt-12 pb-24 sm:pt-16">
+		<a href="/" class="text-soft hover:text-ink flex w-fit items-center gap-2 text-sm transition-colors">
+			<svg
+				class="size-4"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<path d="M19 12H5m6 6-6-6 6-6"></path>
+			</svg>
+			Back to gmiles.dev
+		</a>
+
+		<header class="border-line mt-10 border-b pb-8">
+			<h1 class="text-4xl leading-[1.05] font-bold tracking-[-0.035em] sm:text-5xl">{doc.title}</h1>
+			<p class="text-soft mt-4 text-sm">
+				Last updated <time class="text-ink tabular-nums">{doc.updated}</time>
+				<span class="mx-2" aria-hidden="true">
+					·
+				</span>
+				<span class="font-mono text-[0.8125rem]">
+					<span class="text-accent">~/</span>
+					{doc.slug}.md
+				</span>
+			</p>
+		</header>
+
+		<div class="mt-10 space-y-10">
+			{doc.sections.map((section) => (
+				<section>
+					<h2 class="text-lg font-semibold tracking-[-0.015em]">{section.heading}</h2>
+					{section.paragraphs.map((paragraph) => (
+						<p class="text-soft mt-3 leading-relaxed">{paragraph}</p>
+					))}
+				</section>
+			))}
+		</div>
+	</article>
+</Layout>
