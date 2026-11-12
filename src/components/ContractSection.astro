@@ -1,76 +1,77 @@
 ---
-import { contracting } from "@/data";
-import SectionLabel from "./SectionLabel.astro";
+import { contracting, profile } from "@/data";
+import Section from "./Section.astro";
+
+// The free consultation point leads the closing call to action, the rest sit with the pitch
+const [lead, ...points] = contracting.points;
 ---
 
-<section id="hire" class="scroll-mt-24">
-	<SectionLabel title="Work with me" />
+<Section id="hire" title="Work with me">
+	<p class="max-w-[44ch] text-xl leading-snug font-medium tracking-[-0.015em] text-balance sm:text-2xl">
+		{contracting.pitch}
+	</p>
 
-	<div class="border-line bg-surface grid overflow-hidden rounded-xl border lg:grid-cols-[1.2fr_1fr]">
-		<!-- pitch + booking -->
-		<div class="reveal p-6 sm:p-8">
-			<p class="text-ink max-w-lg text-lg leading-relaxed">{contracting.pitch}</p>
-
-			<ul class="text-soft mt-6 space-y-3 text-sm leading-relaxed">
-				{contracting.points.map((point, i) => (
-					<li class="flex gap-3">
-						<span class="text-accent font-mono" aria-hidden="true">
-							0{i + 1}
-						</span>
-						{point}
-					</li>
-				))}
-			</ul>
-
-			<a
-				href={contracting.bookingUrl}
-				target="_blank"
-				rel="noopener"
-				class="bg-accent mt-8 inline-flex h-11 items-center gap-2 rounded-lg px-5 font-mono text-sm font-semibold text-white transition-opacity hover:opacity-85"
-			>
-				book a free consultation
+	<ul class="mt-7 space-y-3">
+		{points.map((point) => (
+			<li class="text-soft flex max-w-[68ch] gap-3 leading-relaxed">
 				<svg
-					class="size-4"
+					class="text-accent mt-[0.3rem] size-4 shrink-0"
 					viewBox="0 0 24 24"
 					fill="none"
 					stroke="currentColor"
-					stroke-width="2.5"
+					stroke-width="2.25"
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					aria-hidden="true"
 				>
-					<path d="M5 12h14m-7-7 7 7-7 7"></path>
+					<path d="M20 6 9 17l-5-5" />
+				</svg>
+				{point}
+			</li>
+		))}
+	</ul>
+
+	<h3 class="mt-14 text-lg font-semibold tracking-[-0.015em]">Terms</h3>
+	<dl class="border-line mt-4 border-t">
+		{contracting.terms.map((item) => (
+			<div class="border-line grid gap-x-8 gap-y-0.5 border-b py-3.5 sm:grid-cols-[12rem_minmax(0,1fr)]">
+				<dt class="text-ink font-medium">{item.term}</dt>
+				<dd class="text-soft">{item.detail}</dd>
+			</div>
+		))}
+	</dl>
+
+	<div class="border-line bg-surface mt-14 flex flex-col gap-8 rounded-2xl border p-7 sm:p-10 xl:flex-row xl:items-end xl:justify-between">
+		<p class="max-w-[30ch] text-2xl leading-tight font-semibold tracking-[-0.025em] text-balance sm:text-3xl">
+			{lead}
+		</p>
+		<div class="flex shrink-0 flex-col items-start gap-3">
+			<a
+				href={contracting.bookingUrl}
+				target="_blank"
+				rel="noopener"
+				class="bg-accent-fill text-on-accent group inline-flex h-12 items-center gap-2.5 rounded-lg pr-4 pl-5 text-[0.9375rem] font-semibold shadow-[0_1px_2px_rgb(0_0_0/0.12),0_4px_14px_-4px_var(--c-accent-fill)] transition-[filter] hover:brightness-110 active:brightness-95"
+			>
+				Book a free call
+				<svg
+					class="size-4 transition-transform group-hover:translate-x-0.5"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.25"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path d="M5 12h14m-6-6 6 6-6 6"></path>
 				</svg>
 			</a>
-		</div>
-
-		<!-- terms -->
-		<div
-			class="reveal border-line bg-accent-soft/50 border-t p-6 sm:p-8 lg:border-t-0 lg:border-l"
-			style="transition-delay: 100ms"
-		>
-			<h3 class="text-accent font-mono text-xs font-semibold tracking-wider uppercase">The terms</h3>
-			<dl class="mt-4 space-y-4">
-				{contracting.terms.map((item) => (
-					<div>
-						<dt class="text-ink flex items-center gap-2 text-sm font-semibold">
-							<svg
-								class="text-accent size-3.5 shrink-0"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M20 6 9 17l-5-5" />
-							</svg>
-							{item.term}
-						</dt>
-						<dd class="text-soft mt-0.5 pl-5.5 text-sm">{item.detail}</dd>
-					</div>
-				))}
-			</dl>
+			<p class="text-soft text-sm">
+				or email{" "}
+				<a href={`mailto:${profile.email}`} class="link">
+					{profile.email}
+				</a>
+			</p>
 		</div>
 	</div>
-</section>
+</Section>

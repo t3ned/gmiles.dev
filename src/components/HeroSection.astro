@@ -4,84 +4,78 @@ import headshot from "@/assets/headshot.jpg";
 import { contracting, profile } from "@/data";
 ---
 
-<section class="pt-16 sm:pt-24">
-	<div class="grid items-center gap-12 lg:grid-cols-[1fr_auto]">
-		<div>
-			<p class="rise text-accent font-mono text-sm" style="--rise: 0">
-				~/gmiles.dev <span class="text-soft">$ whoami</span>
-			</p>
-			<h1
-				class="rise font-display mt-4 text-5xl font-extrabold tracking-tight text-balance sm:text-7xl"
-				style="--rise: 1"
+<section class="grid items-center gap-8 pt-10 pb-20 sm:pt-20 sm:pb-28 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-20">
+	<div class="order-2 lg:order-1">
+		<h1 class="settle text-[3.25rem] leading-[0.95] font-bold tracking-[-0.04em] sm:text-7xl" style="--i: 0">
+			{profile.name}
+		</h1>
+		<p
+			class="settle mt-5 text-xl leading-snug font-medium tracking-[-0.015em] text-balance sm:text-[1.625rem]"
+			style="--i: 1"
+		>
+			{profile.tagline}
+		</p>
+		<p class="settle text-soft mt-6 max-w-[60ch] text-[1.0625rem] leading-relaxed sm:text-lg" style="--i: 2">
+			{profile.summary}
+		</p>
+
+		<div class="settle mt-9 flex flex-wrap items-center gap-3" style="--i: 3">
+			<a
+				href={contracting.bookingUrl}
+				target="_blank"
+				rel="noopener"
+				class="bg-accent-fill text-on-accent group inline-flex h-12 w-full items-center justify-center gap-2.5 sm:w-auto rounded-lg pr-4 pl-5 text-[0.9375rem] font-semibold shadow-[0_1px_2px_rgb(0_0_0/0.12),0_4px_14px_-4px_var(--c-accent-fill)] transition-[filter,box-shadow] hover:brightness-110 active:brightness-95"
 			>
-				{profile.name}
-			</h1>
-			<p class="rise font-display text-accent mt-4 text-xl font-semibold sm:text-2xl" style="--rise: 2">
-				{profile.tagline}
-			</p>
-			<p class="rise text-soft mt-6 max-w-xl text-lg leading-relaxed" style="--rise: 3">
-				{profile.summary}
-			</p>
-			<p class="rise text-soft mt-8 flex items-center gap-2 font-mono text-sm" style="--rise: 4">
+				Book a free call
 				<svg
-					class="text-accent size-4 shrink-0"
+					class="size-4 transition-transform group-hover:translate-x-0.5"
 					viewBox="0 0 24 24"
 					fill="none"
 					stroke="currentColor"
-					stroke-width="2"
+					stroke-width="2.25"
 					stroke-linecap="round"
 					stroke-linejoin="round"
+					aria-hidden="true"
 				>
-					<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-					<circle cx="12" cy="10" r="3"></circle>
+					<path d="M5 12h14m-6-6 6 6-6 6"></path>
 				</svg>
-				{profile.location}
-			</p>
-			<div class="rise mt-5 flex flex-wrap items-center gap-3 font-mono text-sm" style="--rise: 4">
-				<a
-					href={contracting.bookingUrl}
-					target="_blank"
-					rel="noopener"
-					class="bg-accent flex h-10 items-center gap-2 rounded-lg px-4 font-semibold text-white transition-opacity hover:opacity-85"
-				>
-					<svg
-						class="size-4 shrink-0"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						aria-hidden="true"
-					>
-						<rect x="3" y="4" width="18" height="18" rx="2"></rect>
-						<path d="M16 2v4M8 2v4M3 10h18"></path>
-					</svg>
-					book a free call
-				</a>
-				<a
-					href={profile.linkedin}
-					target="_blank"
-					rel="noopener"
-					class="border-line bg-surface text-ink hover:border-accent hover:text-accent flex h-10 items-center gap-2 rounded-lg border px-4 transition-colors"
-				>
-					<svg class="text-accent size-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"></path>
-					</svg>
-					linkedin
-				</a>
-			</div>
+			</a>
+			<a
+				href={profile.resumeUrl}
+				class="border-line bg-surface text-ink hover:border-soft inline-flex h-12 flex-1 items-center justify-center rounded-lg sm:flex-none border px-5 text-[0.9375rem] font-medium transition-colors"
+			>
+				Request resume
+			</a>
+			<a
+				href={profile.linkedin}
+				target="_blank"
+				rel="noopener"
+				class="border-line bg-surface text-soft hover:text-ink hover:border-soft inline-flex size-12 items-center justify-center rounded-lg border transition-colors"
+				aria-label="LinkedIn profile"
+				title="LinkedIn"
+			>
+				<svg class="size-[1.125rem]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"></path>
+				</svg>
+			</a>
 		</div>
 
-		<figure class="rise mx-auto w-56 sm:w-64" style="--rise: 2">
-			<Image
-				src={headshot}
-				alt="George Miles"
-				width={640}
-				height={640}
-				loading="eager"
-				class="border-line shadow-accent-soft aspect-square rotate-2 rounded-2xl border object-cover shadow-[8px_8px_0_0] transition-transform duration-300 hover:rotate-0"
-			/>
-		</figure>
+		<p class="settle text-soft mt-8 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm" style="--i: 4">
+			<span class="text-ink font-medium">{profile.role}</span>
+			<span class="bg-line hidden h-3.5 w-px sm:block" aria-hidden="true"></span>
+			<span>{profile.location}</span>
+		</p>
 	</div>
+
+	<figure class="settle order-1 w-24 sm:w-36 lg:order-2 lg:w-full" style="--i: 1">
+		<Image
+			src={headshot}
+			alt="Portrait of George Miles"
+			width={640}
+			height={640}
+			loading="eager"
+			fetchpriority="high"
+			class="aspect-square w-full rounded-xl sm:rounded-2xl object-cover shadow-[0_1px_2px_rgb(0_0_0/0.08),0_24px_48px_-24px_rgb(0_0_0/0.35)] lg:aspect-[4/5]"
+		/>
+	</figure>
 </section>

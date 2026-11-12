@@ -34,6 +34,8 @@ export const profile = {
 	location: "England · remote, worldwide",
 	email: "hi@gmiles.dev",
 	linkedin: "https://linkedin.com/in/gtmmiles",
+	resumeUrl:
+		"mailto:hi@gmiles.dev?subject=Resume%20request&body=Hi%20George%2C%0A%0AI%20found%20gmiles.dev%20and%20would%20like%20a%20copy%20of%20your%20resume.%0A%0AName%3A%0ACompany%3A%0ARole%20in%20mind%3A%0A%0AThanks",
 };
 
 // Ordered by when each layer entered the career: backend first, frontend last

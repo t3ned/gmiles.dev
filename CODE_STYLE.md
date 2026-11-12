@@ -55,18 +55,19 @@ Prefer popular, well-maintained packages over hand-rolling functionality for any
 
 ## Typography
 
-| Font                | Class          | Usage                                                     |
-| ------------------- | -------------- | --------------------------------------------------------- |
-| Bricolage Grotesque | `font-display` | Headings, titles (`font-semibold` to `font-extrabold`)    |
-| Instrument Sans     | `font-sans`    | Body, UI (default, `font-normal` to `font-medium`)        |
-| JetBrains Mono      | `font-mono`    | Labels, terminal, meta (`font-normal` to `font-semibold`) |
+| Font              | Class       | Usage                                                                 |
+| ----------------- | ----------- | --------------------------------------------------------------------- |
+| Schibsted Grotesk | `font-sans` | Headings and body (default). Headings `font-semibold` to `font-bold`  |
+| JetBrains Mono    | `font-mono` | The `~/` mark, prompts, the stack terminal and dates (`tabular-nums`) |
+
+One family carries the whole hierarchy through size, weight and tracking. Headings track tight (`-0.02em` to `-0.04em` for the hero name), body copy sits at a 60 to 68ch measure with `leading-relaxed`. Figures inside experience highlights are set in heavier ink by `splitFigures`. Mono is for code, data and dates only, never decoration.
 
 ## Theming
 
-Hex colors in CSS vars, defined in `src/style.css` (`:root` for light, `.dark` overrides) and exposed to Tailwind via `@theme inline`. Light/dark via `.dark` class on `<html>`, applied pre-paint by the inline script in `index.html`. Rust-orange accent (`--c-accent`), warm paper light theme, deep ink dark theme. The stack terminal stays dark in both themes.
+Hex colors in CSS vars, defined in `src/style.css` (`:root` for light, `.dark` overrides) and exposed to Tailwind via `@theme inline`. Light/dark via `.dark` class on `<html>`, applied pre-paint by the inline script in `Layout.astro`. Neutral grounds: soft off-white light theme (`#f6f6f4`), deep neutral charcoal dark theme (`#121212`). Orange is a precise accent for links, the primary button, role titles and small highlights. The stack terminal stays dark in both themes.
 
-Semantic tokens: `bg`, `surface`, `ink` (text), `soft` (muted text), `line` (borders), `accent`, `accent-soft`. Use these, never raw hex in components.
+Semantic tokens: `bg`, `surface`, `ink` (text), `soft` (muted text), `line` (borders), `accent` (accent text, AA on `bg`), `accent-fill` (primary button fill), `on-accent` (text on `accent-fill`, white in light and charcoal in dark), `accent-soft`, `term` (terminal ground). Use these, never raw hex in components. Selection, focus rings, caret and scrollbar are themed from the same tokens in `style.css`.
 
 ## Motion
 
-Load-in stagger via `.rise` (hero only), scroll reveal via the `.reveal` class with an optional inline `transition-delay` for stagger. All animation respects `prefers-reduced-motion`.
+One authored moment: the hero settles in on load through `.settle`, a short opacity, rise and unblur with an exponential ease-out, staggered by an inline `--i` index. Everything else is static apart from small hover transitions. All animation is disabled under `prefers-reduced-motion`.

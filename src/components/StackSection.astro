@@ -1,40 +1,35 @@
 ---
 import { stack } from "@/data";
-import SectionLabel from "./SectionLabel.astro";
+import Section from "./Section.astro";
 ---
 
-<section id="stack" class="scroll-mt-24">
-	<SectionLabel title="Stack" />
-
+<Section id="stack" title="Stack">
 	<!-- Terminal window: dark in both themes -->
-	<div class="reveal overflow-hidden rounded-xl bg-[#191410] shadow-lg shadow-black/10">
-		<!-- title bar -->
-		<div class="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-			<span class="size-3 rounded-full bg-[#f26d5f]" aria-hidden="true"></span>
-			<span class="size-3 rounded-full bg-[#f5bd4f]" aria-hidden="true"></span>
-			<span class="size-3 rounded-full bg-[#59c26f]" aria-hidden="true"></span>
-			<span class="ml-3 font-mono text-xs text-white/40">george@gmiles: ~/stack</span>
+	<div class="bg-term overflow-hidden rounded-xl shadow-[0_1px_2px_rgb(0_0_0/0.1),0_20px_40px_-24px_rgb(0_0_0/0.45)] ring-1 ring-black/5 dark:ring-white/10">
+		<div class="flex items-center gap-2 border-b border-white/[0.07] px-4 py-3">
+			<span class="size-2.5 rounded-full bg-white/15" aria-hidden="true"></span>
+			<span class="size-2.5 rounded-full bg-white/15" aria-hidden="true"></span>
+			<span class="size-2.5 rounded-full bg-white/15" aria-hidden="true"></span>
+			<span class="ml-auto font-mono text-xs text-white/45">george@gmiles: ~/stack</span>
 		</div>
 
-		<!-- session -->
-		<div class="overflow-x-auto p-5 font-mono text-sm leading-relaxed sm:p-6">
-			<p class="text-white/50">
-				<span class="text-[#ff8c42]">$</span> tree ./career
-				<span class="text-white/30">--sort started</span>
+		<div class="overflow-x-auto p-5 font-mono text-[0.8125rem] leading-relaxed sm:p-7 sm:text-sm">
+			<p class="text-white/60">
+				<span class="text-[#ff8c42]">$</span> tree ./career <span class="text-white/45">--sort started</span>
 			</p>
 
-			<div class="mt-5 space-y-5">
+			<div class="mt-5 space-y-4">
 				{stack.map((layer, i) => (
 					<div>
-						<p>
+						<p class="-indent-[4ch] pl-[4ch]">
 							<span class="text-white/30 select-none">{i === stack.length - 1 ? "└── " : "├── "}</span>
-							<span class="font-semibold text-[#ff8c42]">{layer.name}</span>
-							<span class="text-white/35 italic"> # {layer.note}</span>
+							<span class="font-medium text-[#ff8c42]">{layer.name}</span>
+							<span class="text-white/45"> # {layer.note}</span>
 						</p>
-						<p class="mt-1 pl-8 text-white/70">
+						<p class="mt-1 pl-[4ch] text-white/80">
 							{layer.items.map((item, j) => (
 								<>
-									{j > 0 && <span class="text-white/25 select-none"> · </span>}
+									{j > 0 && <span class="text-white/30 select-none"> · </span>}
 									<span class="whitespace-nowrap">{item}</span>
 								</>
 							))}
@@ -43,9 +38,13 @@ import SectionLabel from "./SectionLabel.astro";
 				))}
 			</div>
 
-			<p class="mt-5 text-white/50">
-				<span class="text-[#ff8c42]">$</span> <span class="terminal-cursor" aria-hidden="true"></span>
+			<p class="mt-5 text-white/60">
+				<span class="text-[#ff8c42]">$</span>
+				<span
+					class="ml-1 inline-block h-[1.05em] w-[0.55em] translate-y-[0.18em] bg-white/60"
+					aria-hidden="true"
+				></span>
 			</p>
 		</div>
 	</div>
-</section>
+</Section>

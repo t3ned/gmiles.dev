@@ -10,11 +10,8 @@ const { doc } = Astro.props;
 ---
 
 <Layout title={`${doc.title} · George Miles`}>
-	<article class="mx-auto max-w-3xl">
-		<a
-			href="/"
-			class="text-soft hover:text-accent flex w-fit items-center gap-2 pt-12 font-mono text-sm transition-colors"
-		>
+	<article class="mx-auto max-w-[44rem] pt-12 pb-24 sm:pt-16">
+		<a href="/" class="text-soft hover:text-ink flex w-fit items-center gap-2 text-sm transition-colors">
 			<svg
 				class="size-4"
 				viewBox="0 0 24 24"
@@ -25,21 +22,29 @@ const { doc } = Astro.props;
 				stroke-linejoin="round"
 				aria-hidden="true"
 			>
-				<path d="M19 12H5m7 7-7-7 7-7"></path>
+				<path d="M19 12H5m6 6-6-6 6-6"></path>
 			</svg>
-			back to gmiles.dev
+			Back to gmiles.dev
 		</a>
 
-		<p class="text-accent mt-10 font-mono text-sm">
-			~/gmiles.dev <span class="text-soft">$ cat {doc.slug}.md</span>
-		</p>
-		<h1 class="font-display mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">{doc.title}</h1>
-		<p class="text-soft mt-3 font-mono text-xs">last updated: {doc.updated}</p>
+		<header class="border-line mt-10 border-b pb-8">
+			<h1 class="text-4xl leading-[1.05] font-bold tracking-[-0.035em] sm:text-5xl">{doc.title}</h1>
+			<p class="text-soft mt-4 text-sm">
+				Last updated <time class="text-ink tabular-nums">{doc.updated}</time>
+				<span class="mx-2" aria-hidden="true">
+					·
+				</span>
+				<span class="font-mono text-[0.8125rem]">
+					<span class="text-accent">~/</span>
+					{doc.slug}.md
+				</span>
+			</p>
+		</header>
 
-		<div class="mt-12 space-y-10">
+		<div class="mt-10 space-y-10">
 			{doc.sections.map((section) => (
 				<section>
-					<h2 class="font-display text-xl font-bold">{section.heading}</h2>
+					<h2 class="text-lg font-semibold tracking-[-0.015em]">{section.heading}</h2>
 					{section.paragraphs.map((paragraph) => (
 						<p class="text-soft mt-3 leading-relaxed">{paragraph}</p>
 					))}

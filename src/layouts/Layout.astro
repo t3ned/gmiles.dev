@@ -1,6 +1,7 @@
 ---
 import SiteFooter from "@/components/SiteFooter.astro";
 import ThemeToggle from "@/components/ThemeToggle.astro";
+import { profile } from "@/data";
 import "@/style.css";
 
 interface Props {
@@ -10,6 +11,13 @@ interface Props {
 }
 
 const { title, nav = false } = Astro.props;
+
+const links = [
+	{ href: "#experience", label: "Experience" },
+	{ href: "#stack", label: "Stack" },
+	{ href: "#education", label: "Education" },
+	{ href: "#hire", label: "Hire" },
+];
 ---
 
 <!doctype html>
@@ -21,14 +29,15 @@ const { title, nav = false } = Astro.props;
 			name="description"
 			content="George Miles, senior backend engineer working the full stack. Rust, distributed systems, DevOps, and modern frontend."
 		/>
-		<meta name="theme-color" content="#ea580c" />
+		<meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:ital,wght@0,400..800;1,400&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -45,84 +54,52 @@ const { title, nav = false } = Astro.props;
 			})();
 		</script>
 	</head>
-	<body>
-		<div class="min-h-screen">
-			<!-- ambient accent glow -->
-			<div
-				class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-96"
-				style="background: radial-gradient(60% 100% at 50% 0%, var(--c-accent-soft), transparent)"
-				aria-hidden="true"
-			></div>
+	<body class="flex min-h-screen flex-col">
+		<a
+			href="#main"
+			class="bg-accent-fill text-on-accent sr-only rounded-md px-3 py-2 text-sm font-medium focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+		>
+			Skip to content
+		</a>
 
-			<header class="border-line/60 bg-bg/80 sticky top-0 z-10 border-b backdrop-blur-md">
-				<div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-					<a href="/" class="font-mono text-sm font-semibold">
+		<header class="border-line bg-bg sticky top-0 z-20 border-b">
+			<div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+				<a href="/" class="group flex items-baseline gap-2.5 font-mono text-sm" aria-label="gmiles.dev home">
+					<span class="font-medium">
 						<span class="text-accent">~/</span>gmiles.dev
-					</a>
+					</span>
+					<span class="text-soft" aria-hidden="true">
+						$ whoami
+						<span class="bg-accent ml-1 inline-block h-[1.05em] w-[0.5em] translate-y-[0.18em]"></span>
+					</span>
+				</a>
+
+				<div class="flex items-center gap-1 sm:gap-2">
 					{nav && (
-						<nav class="text-soft hidden items-center gap-6 font-mono text-xs md:flex">
-							<a href="#stack" class="hover:text-accent transition-colors">
-								stack
-							</a>
-							<a href="#experience" class="hover:text-accent transition-colors">
-								experience
-							</a>
-							<a href="#education" class="hover:text-accent transition-colors">
-								education
-							</a>
-							<a href="#hire" class="hover:text-accent transition-colors">
-								hire
-							</a>
-							<a href="#contact" class="hover:text-accent transition-colors">
-								contact
-							</a>
+						<nav class="mr-3 hidden items-center gap-7 text-sm md:flex" aria-label="Sections">
+							{links.map((link) => (
+								<a href={link.href} class="text-soft hover:text-ink transition-colors">
+									{link.label}
+								</a>
+							))}
 						</nav>
 					)}
-					<div class="flex items-center gap-2">
-						<a
-							href="mailto:hi@gmiles.dev?subject=Resume%20request&body=Hi%20George%2C%0A%0AI%20found%20gmiles.dev%20and%20would%20like%20a%20copy%20of%20your%20resume.%0A%0AName%3A%0ACompany%3A%0ARole%20in%20mind%3A%0A%0AThanks"
-							class="border-line bg-surface text-ink hover:border-accent hover:text-accent flex h-9 items-center gap-2 rounded-lg border px-3.5 font-mono text-xs transition-colors"
-						>
-							request resume
-							<svg
-								class="size-3.5"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="m22 2-7 20-4-9-9-4Z"></path>
-								<path d="M22 2 11 13"></path>
-							</svg>
-						</a>
-						<ThemeToggle />
-					</div>
+					<a
+						href={profile.resumeUrl}
+						class="text-ink hover:bg-surface hover:border-line flex h-9 items-center gap-2 rounded-lg border border-transparent px-3 text-sm font-medium transition-colors"
+					>
+						<span class="hidden sm:inline">Request resume</span>
+						<span class="sm:hidden">Resume</span>
+					</a>
+					<ThemeToggle />
 				</div>
-			</header>
+			</div>
+		</header>
 
-			<main class="mx-auto max-w-5xl px-6 pb-8">
-				<slot />
-			</main>
+		<main id="main" class="mx-auto w-full max-w-6xl flex-1 px-5 sm:px-8">
+			<slot />
+		</main>
 
-			<SiteFooter />
-		</div>
-
-		<script>
-			// Fade .reveal elements in as they scroll into view. Stagger comes from an inline transition-delay
-			const observer = new IntersectionObserver(
-				(entries) => {
-					for (const entry of entries) {
-						if (!entry.isIntersecting) continue;
-						entry.target.classList.add("revealed");
-						observer.unobserve(entry.target);
-					}
-				},
-				{ threshold: 0.15 },
-			);
-
-			for (const el of document.querySelectorAll(".reveal")) observer.observe(el);
-		</script>
+		<SiteFooter />
 	</body>
 </html>
