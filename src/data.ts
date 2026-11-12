@@ -27,7 +27,7 @@ export interface School {
 
 export const profile = {
 	name: "George Miles",
-	role: "Senior Backend Engineer",
+	role: "Owner, Stats.cc",
 	tagline: "Backend at the core. Full stack from the ground up.",
 	summary:
 		"I own and run Stats.cc, and I build high-performance distributed systems: platforms processing billions of real-time events on Kubernetes clusters that stay up. The AI wave pulled me up the stack, so now I ship the frontend too.",

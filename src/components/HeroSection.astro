@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import headshot from "@/assets/headshot.jpg";
 import { contracting, profile } from "@/data";
+
+const [title, org] = profile.role.split(", ");
 ---
 
 <section class="grid items-center gap-8 pt-10 pb-20 sm:pt-20 sm:pb-28 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-20">
@@ -9,6 +11,16 @@ import { contracting, profile } from "@/data";
 		<h1 class="settle text-[3.25rem] leading-[0.95] font-bold tracking-[-0.04em] sm:text-7xl" style="--i: 0">
 			{profile.name}
 		</h1>
+		<p
+			class="settle mt-5 inline-flex items-stretch overflow-hidden rounded-md text-sm font-semibold"
+			style="--i: 1"
+		>
+			<span class="bg-accent-fill w-1 shrink-0" aria-hidden="true"></span>
+			<span class="bg-ink text-bg px-3 py-1.5">{title}</span>
+			{org && (
+				<span class="border-line bg-surface text-ink rounded-r-md border border-l-0 px-3 py-1.5">{org}</span>
+			)}
+		</p>
 		<p
 			class="settle mt-5 text-xl leading-snug font-medium tracking-[-0.015em] text-balance sm:text-[1.625rem]"
 			style="--i: 1"
@@ -61,8 +73,6 @@ import { contracting, profile } from "@/data";
 		</div>
 
 		<p class="settle text-soft mt-8 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm" style="--i: 4">
-			<span class="text-ink font-medium">{profile.role}</span>
-			<span class="bg-line hidden h-3.5 w-px sm:block" aria-hidden="true"></span>
 			<span>{profile.location}</span>
 		</p>
 	</div>
