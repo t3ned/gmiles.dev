@@ -136,21 +136,22 @@ const command = "tree ./career";
 	 */
 	const run = (raw) => {
 		const cmd = raw.trim().replace(/\s+/g, " ");
+		const key = cmd.toLowerCase();
 		if (!cmd) return;
 		print([`$ ${cmd}`], true);
-		if (cmd === "clear") {
+		if (key === "clear") {
 			output.replaceChildren();
 			return;
 		}
 
-		const dir = cmd.match(/^cd (?:\.\/|~\/)?(\w+)\/?$/)?.[1];
+		const dir = key.match(/^cd (?:\.\/|~\/)?(\w+)\/?$/)?.[1];
 		if (dir && sections.includes(dir)) {
 			print([`Jumping to ~/${dir}`]);
 			document.getElementById(dir)?.scrollIntoView({ behavior: "smooth" });
 			return;
 		}
 
-		print(terminal[cmd.toLowerCase()] ?? [`command not found: ${cmd.split(" ")[0]}. Try help`]);
+		print(Object.hasOwn(terminal, key) ? terminal[key] : [`command not found: ${cmd.split(" ")[0]}. Try help`]);
 	};
 
 	form?.addEventListener("submit", (event) => {
@@ -176,7 +177,7 @@ const command = "tree ./career";
 				observer.disconnect();
 				play();
 			},
-			{ threshold: 0.5 },
+			{ rootMargin: "0px 0px -30% 0px" },
 		);
 		observer.observe(term);
 	}

@@ -224,7 +224,8 @@ li:last-child > .role-seg {
 [data-term-reveal] {
 	transition:
 		opacity 0.35s ease,
-		translate 0.35s ease;
+		translate 0.35s ease,
+		visibility 0.35s;
 }
 
 .term-input:focus-visible {
@@ -234,6 +235,7 @@ li:last-child > .role-seg {
 .term-hidden {
 	opacity: 0;
 	translate: 0 4px;
+	visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -5,7 +5,7 @@ import Section from "./Section.astro";
 
 <Section id="education" title="Education">
 	<div class="divide-line -mt-2 divide-y">
-		{schools.map((school) => (
+		{schools.map((school, s) => (
 			<article class="grid gap-x-10 gap-y-5 py-8 first:pt-0 last:pb-0 sm:grid-cols-[minmax(0,1fr)_auto]">
 				<div>
 					<h3 class="text-2xl font-semibold tracking-[-0.025em] sm:text-[1.625rem]">{school.name}</h3>
@@ -38,7 +38,7 @@ import Section from "./Section.astro";
 							<li
 								class="border-line text-ink group relative flex cursor-default gap-3 border-b py-2.5 leading-snug outline-offset-2 last:border-b-0"
 								tabindex="0"
-								aria-describedby={`award-${i}`}
+								aria-describedby={`award-${s}-${i}`}
 							>
 								<svg
 									class="text-accent mt-px size-[1.125rem] shrink-0"
@@ -57,7 +57,7 @@ import Section from "./Section.astro";
 									{award.name}
 								</span>
 								<span
-									id={`award-${i}`}
+									id={`award-${s}-${i}`}
 									role="tooltip"
 									class="bg-ink text-bg pointer-events-none absolute top-full left-7 z-10 -mt-1 w-max max-w-xs translate-y-1 rounded-lg px-3 py-2 text-sm leading-snug opacity-0 shadow-lg transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
 								>
