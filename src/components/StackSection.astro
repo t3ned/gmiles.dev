@@ -18,7 +18,10 @@ const command = "tree ./career";
 			<span class="ml-auto font-mono text-xs text-white/45">george@gmiles: ~/stack</span>
 		</div>
 
-		<div class="overflow-x-auto p-5 font-mono text-[0.8125rem] leading-relaxed sm:p-7 sm:text-sm">
+		<div
+			class="term-screen h-[33.5rem] overflow-auto overscroll-contain p-5 font-mono text-[0.8125rem] leading-relaxed sm:h-[26rem] sm:p-7 sm:text-sm"
+			data-term-screen
+		>
 			<p class="text-white/60">
 				<span class="text-term-accent">$</span> <span class="sr-only">{command} --sort started</span>
 				<span aria-hidden="true">
@@ -81,6 +84,7 @@ const command = "tree ./career";
 	const output = term?.querySelector("[data-term-output]");
 	const form = term?.querySelector("[data-term-form]");
 	const input = form?.querySelector("input");
+	const screen = term?.querySelector("[data-term-screen]");
 	const sections = ["experience", "stack", "education", "hire"];
 
 	/**
@@ -153,6 +157,7 @@ const command = "tree ./career";
 		event.preventDefault();
 		run(input.value);
 		input.value = "";
+		screen.scrollTop = screen.scrollHeight;
 	});
 
 	// Clicking anywhere in the terminal focuses the prompt, unless the visitor is selecting text

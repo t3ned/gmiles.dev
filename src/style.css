@@ -150,30 +150,41 @@ body {
 	animation-delay: 120ms;
 }
 
-/* Experience timeline. The rail fills with accent up to the middle of the viewport as you scroll, each dot lights as the fill reaches it, and the role at the middle zooms into focus while its neighbours recede. Browsers without view timelines show everything at rest */
+/* Experience timeline. Each segment of the rail runs from one dot to the next and fills as the next role reaches the middle of the screen, and each dot lights as it crosses the middle. Browsers without view timelines show the plain rail */
+.role-seg {
+	position: absolute;
+	top: 0.88rem;
+	bottom: calc(-1 * var(--gap) - 0.88rem);
+	left: calc(-1.5rem - 1px);
+	width: 2px;
+	view-timeline-name: --seg;
+}
+
+.role-seg::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0.5px;
+	width: 1px;
+	background-color: var(--c-line);
+}
+
+li:last-child > .role-seg {
+	display: none;
+}
+
+.role-seg-fill {
+	position: absolute;
+	inset: 0;
+	background-color: var(--c-accent);
+	transform-origin: top;
+	scale: 1 0;
+}
+
 @supports (animation-timeline: view()) {
-	.role-rail::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: -1.5px;
-		width: 2px;
-		background-color: var(--c-accent);
-		transform-origin: top;
+	.role-seg-fill {
 		animation: rail-fill linear both;
-		animation-timeline: view();
+		animation-timeline: --seg;
 		animation-range: cover 50vh cover calc(100% - 50vh);
-	}
-
-	.role {
-		view-timeline-name: --role;
-	}
-
-	.role-body {
-		transform-origin: left center;
-		animation: role-focus linear both;
-		animation-timeline: --role;
 	}
 
 	.role-dot {
@@ -183,22 +194,8 @@ body {
 }
 
 @keyframes rail-fill {
-	from {
-		scale: 1 0;
-	}
-}
-
-@keyframes role-focus {
-	0%,
-	100% {
-		scale: 0.82;
-		opacity: 0.18;
-	}
-
-	38%,
-	62% {
+	to {
 		scale: 1;
-		opacity: 1;
 	}
 }
 
@@ -214,6 +211,12 @@ body {
 		background-color: var(--c-accent);
 		box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-accent) 25%, transparent);
 	}
+}
+
+/* Terminal scrollback */
+.term-screen {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(255 255 255 / 0.15) transparent;
 }
 
 /* Stack terminal. Lines held back until the command has typed out */
@@ -246,9 +249,8 @@ body {
 	}
 
 	.group:hover .stats-logo path,
-	.role-body,
-	.role-dot,
-	.role-rail::before {
+	.role-seg-fill,
+	.role-dot {
 		animation: none;
 	}
 }
